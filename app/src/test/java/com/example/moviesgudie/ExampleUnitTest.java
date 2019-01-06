@@ -1,4 +1,4 @@
-package com.example.activitytest;
+package com.example.moviesgudie;
 
 import org.junit.Test;
 

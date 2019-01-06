@@ -7,7 +7,6 @@
     android:background="#ffffff">
 
     <include layout="@layout/main_login_title" />
-
     <include layout="@layout/main_login_listing_movies" />
 
 </android.support.constraint.ConstraintLayout>

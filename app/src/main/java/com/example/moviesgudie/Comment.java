@@ -1,4 +1,4 @@
-package com.example.activitytest;
+package com.example.moviesgudie;
 
 public class Comment {
     private String username;

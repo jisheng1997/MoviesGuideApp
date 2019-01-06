@@ -1,4 +1,4 @@
-package com.example.activitytest;
+package com.example.moviesgudie;
 
 public class Movie {
     private String name;
