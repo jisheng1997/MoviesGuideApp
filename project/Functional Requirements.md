@@ -20,4 +20,4 @@ See 1.4.6 to get the detailed introduction of the comment function.
 * 1.4.9 Sort movies
 	* The user can sort the movie by several ways in the movie lists. It can be sorted according to rates of two websites, movie name, director, staring and years.<br>
 	
-# [返回README](https://github.com/jisheng1997/MoviesGuideApp/blob/master/README.md)
+### [返回README](https://github.com/jisheng1997/MoviesGuideApp/blob/master/README.md)
