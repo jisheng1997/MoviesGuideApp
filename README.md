@@ -3,9 +3,9 @@
 
 ## 1.项目总览 <br>
 * 1.1 项目介绍（Description）<br>
-     We are about to make a movie guide app which can show the users the information of movies by phone with andriod phone.This software is mainly used to serve the people who look for the movies. Users can find the information of movie by searching the      movie's name from the database. Our software can show the basic information, brief description and comments of movies. Otherwise, Our   software can recommand movies to users by different sorts.What’s more, our software has a clear and simple interface. Users can easily learn how to use it at the first time they are using it. <br>
+     * We are about to make a movie guide app which can show the users the information of movies by phone with andriod phone.This software is mainly used to serve the people who look for the movies. Users can find the information of movie by searching the      movie's name from the database. Our software can show the basic information, brief description and comments of movies. Otherwise, Our   software can recommand movies to users by different sorts.What’s more, our software has a clear and simple interface. Users can easily learn how to use it at the first time they are using it. <br>
 * 1.2 目标人群（Define users/target audience）<br>
-     People who are not able to decide the movie to see because of the lack of information which is helpful to make choice. <br>
+     * People who are not able to decide the movie to see because of the lack of information which is helpful to make choice. <br>
 * 1.3 项目功能（Product functions）<br>
      * 1.3.1 Login
      * 1.3.2 Registration
