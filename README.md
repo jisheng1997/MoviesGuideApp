@@ -18,7 +18,7 @@
      * 1.3.8 History list
      * 1.3.9 Sort movies <br>
 * 1.4 功能性需求（Functional Requirements)
-    * [Functional Requirements](https://github.com/jisheng1997/MoviesGuideApp/blob/master/project/Functional%20requirements) <br>
+    * [Functional Requirements](https://github.com/jisheng1997/MoviesGuideApp/blob/master/project/Functional%20Requirements.md) <br>
 * 1.5 非功能性需求(Nonfunctional requirements)
     * [Nonfunctional Requirements](https://github.com/jisheng1997/MoviesGuideApp/blob/master/project/Functional%20requirements) <br>
 * 流程图 Ver1.0 <br>
