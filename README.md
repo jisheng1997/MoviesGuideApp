@@ -16,7 +16,6 @@
      * 1.3.7 Favorite list
      * 1.3.8 History list
      * 1.3.9 Sort movies
- <br>
 * 功能性需求/非功能性需求（Functional/Nonfunctional requirements）<br>
   待写 <br>
 * 流程图 Ver1.0 <br>
