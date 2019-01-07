@@ -6,8 +6,7 @@
      * We are about to make a movie guide app which can show the users the information of movies by phone with andriod phone.This software is mainly used to serve the people who look for the movies. Users can find the information of movie by searching the      movie's name from the database. Our software can show the basic information, brief description and comments of movies. Otherwise, Our   software can recommand movies to users by different sorts.What’s more, our software has a clear and simple interface. Users can easily learn how to use it at the first time they are using it. 
      <br>
 * 1.2 目标人群（Define users/target audience)
-     * People who are not able to decide the movie to see because of the lack of information which is helpful to make choice. 
-     <br>
+     * People who are not able to decide the movie to see because of the lack of information which is helpful to make choice.<br>
 * 1.3 项目功能（Product functions）
      * 1.3.1 Login
      * 1.3.2 Registration
@@ -17,10 +16,9 @@
      * 1.3.6 Make comments
      * 1.3.7 Favorite list
      * 1.3.8 History list
-     * 1.3.9 Sort movies
-     <br>
+     * 1.3.9 Sort movies <br>
 * 1.4 功能性需求（Functional Requirements)
-* [Functional Requirements](https://github.com/jisheng1997/MoviesGuideApp/blob/master/project/Functional%20requirements) <br>
+    * [Functional Requirements](https://github.com/jisheng1997/MoviesGuideApp/blob/master/project/Functional%20requirements) <br>
 
 * 1.5 非功能性需求(Nonfunctional requirements)<br>
 
