@@ -19,8 +19,8 @@
      * 1.3.8 History list
      * 1.3.9 Sort movies
      <br>
-* 1.4 功能性需求（Functional)
-* [数据execl](https://github.com/jisheng1997/MoviesGuideApp/blob/master/project/%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1Top250.xlsx) <br>
+* 1.4 功能性需求（Functional Requirements)
+* [Functional Requirements](https://github.com/jisheng1997/MoviesGuideApp/blob/master/project/Functional%20requirements) <br>
 
 * 1.5 非功能性需求(Nonfunctional requirements)<br>
 
