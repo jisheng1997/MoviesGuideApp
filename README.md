@@ -1,5 +1,9 @@
 # movies-guide-app
 
+# 版本更新
+* Ver 1.1 main login/movie/my favorite list界面UI设计初步完成 by jisheng
+* Ver 1.2 main login界面抽屉功能初步实现（不能跳转）by jisheng 2019/1/8 6:34
+
 
 ## 1.项目总览
 * 1.1 项目介绍（Description)
@@ -20,13 +24,15 @@
     * [Functional Requirements](https://github.com/jisheng1997/MoviesGuideApp/blob/master/project/Functional%20Requirements.md)
 * 1.5 非功能性需求(Nonfunctional requirements)
     * [Nonfunctional Requirements](https://github.com/jisheng1997/MoviesGuideApp/blob/master/project/Nonfunctional%20Requirements.md)
-* 流程图 Ver1.1 <br>
+* 1.6 流程图 Ver1.1 <br>
 ![流程图](https://github.com/jisheng1997/MoviesGuideApp/blob/master/project/project%20Ver%201.1.png) <br>
-* [mockplus](https://github.com/jisheng1997/MoviesGuideApp/blob/master/project/%E9%A1%B9%E7%9B%AE.mp) <br>
-* [数据execl](https://github.com/jisheng1997/MoviesGuideApp/blob/master/project/%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1Top250.xlsx) <br>
+* 1.7 项目成员(排名不分先后)
+    * [季晟](https://github.com/jisheng1997)      
+    * [陶李玮](https://github.com/zoslen)      
+    * [韩馥骏](https://github.com/uncleeesky)      
+    * [董天元](https://github.com/Zitronen)
 
-
-## 资料地址 <br>
+## 2.资料地址 <br>
 * [git下载地址](https://git-scm.com/download/win) <br>
 * [Android studio下将项目代码上传至github包括更新，同步，创建依赖](https://blog.csdn.net/u013309870/article/details/79214030) <br>
 * [GitHub上README.md排版样式教程](https://blog.csdn.net/u012067966/article/details/50736647) <br>
@@ -37,7 +43,7 @@
 
 
 
-## 第一行代码 <br>
+## 3.《第一行代码》相关<br>
 * p98 圆形进度条加载
 * p101 确认对话框
 * p125 Listview下滑列表——用于展示电影的列表
