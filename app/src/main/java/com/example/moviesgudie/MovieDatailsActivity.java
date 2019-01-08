@@ -1,7 +1,7 @@
 package com.example.moviesgudie;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -38,5 +38,6 @@ public class MovieDatailsActivity extends AppCompatActivity {
         CommentList.add(comment3);
         CommentList.add(comment3);
         CommentList.add(comment3);
+
     }
 }

@@ -5,8 +5,8 @@ import android.app.Activity;
 import java.util.Stack;
 
 public class ActivityManager {
-    public ActivityManager() {
 
+    public ActivityManager() {
     }
 
     private static ActivityManager activityManager = new ActivityManager();
@@ -14,7 +14,6 @@ public class ActivityManager {
     public static ActivityManager getActivityManager() {
         return activityManager;
     }
-
 
     private static Stack<Activity> activityStack = new Stack<>();
 
@@ -27,7 +26,6 @@ public class ActivityManager {
 
     //delete the activityStack now
     public void removeCurrent() {
-
         Activity activity = activityStack.lastElement();
         activity.finish();
         activityStack.remove(activity);
@@ -36,7 +34,6 @@ public class ActivityManager {
     //remove the specific activity
     public void remove(Activity activity) {
         if (activity != null) {
-
             for (int i = activityStack.size() - 1; i >= 0; i--) {
                 Activity currentActivity = activityStack.get(i);
                 if (currentActivity.getClass().equals(activity.getClass())) {

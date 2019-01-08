@@ -1,27 +1,43 @@
 package com.example.moviesgudie;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ImageView;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainLoginActivity extends AppCompatActivity{
+public class MainLoginActivity extends BaseActivity{
 
     private List<Movie> MovieList = new ArrayList<>();
-
+    private DrawerLayout mDrawerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_login);
         initMovies();
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.movies_list);
+        RecyclerView recyclerView = findViewById(R.id.movies_list);
+        Toolbar toolbar = findViewById(R.id.main_login_title_Toorbar);
+        mDrawerLayout = findViewById(R.id.main_login_DrawerLayout);
+        ImageView imageView = findViewById(R.id.main_login_title_ImageView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         MovieAdapter movieadapter = new MovieAdapter(this,MovieList);
         recyclerView.setAdapter(movieadapter);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDrawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+
     }
 
     private void initMovies(){
@@ -38,4 +54,5 @@ public class MainLoginActivity extends AppCompatActivity{
        Movie movie6 = new Movie("盗梦空间 Inception",R.drawable.moren);
        MovieList.add(movie6);
     }
+
 }
