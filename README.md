@@ -27,7 +27,7 @@
 * 1.6 流程图 Ver1.1 <br>
 ![流程图](https://github.com/jisheng1997/MoviesGuideApp/blob/master/project/project%20Ver%201.1.png) <br>
 * 1.7 项目成员(排名不分先后)
-    * [季晟]()  [陶李玮]()  [季晟]()  [季晟]()
+    * [季晟](https://github.com/jisheng1997)      [陶李玮](https://github.com/zoslen)      [韩馥骏](https://github.com/uncleeesky)      [董天元](https://github.com/Zitronen)
 
 ## 2.资料地址 <br>
 * [git下载地址](https://git-scm.com/download/win) <br>
