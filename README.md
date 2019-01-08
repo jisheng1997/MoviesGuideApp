@@ -24,11 +24,10 @@
     * [Functional Requirements](https://github.com/jisheng1997/MoviesGuideApp/blob/master/project/Functional%20Requirements.md)
 * 1.5 非功能性需求(Nonfunctional requirements)
     * [Nonfunctional Requirements](https://github.com/jisheng1997/MoviesGuideApp/blob/master/project/Nonfunctional%20Requirements.md)
-* 流程图 Ver1.1 <br>
+* 1.6 流程图 Ver1.1 <br>
 ![流程图](https://github.com/jisheng1997/MoviesGuideApp/blob/master/project/project%20Ver%201.1.png) <br>
-* [mockplus](https://github.com/jisheng1997/MoviesGuideApp/blob/master/project/%E9%A1%B9%E7%9B%AE.mp) <br>
-* [数据execl](https://github.com/jisheng1997/MoviesGuideApp/blob/master/project/%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1Top250.xlsx) <br>
-
+* 1.7 项目成员(排名不分先后)
+    * [季晟]()  [陶李玮]()  [季晟]()  [季晟]()
 
 ## 2.资料地址 <br>
 * [git下载地址](https://git-scm.com/download/win) <br>
