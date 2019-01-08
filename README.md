@@ -1,5 +1,9 @@
 # movies-guide-app
 
+# 版本更新
+* Ver 1.1 main login/movie/my favorite list界面UI设计初步完成
+* Ver 1.2 main login界面抽屉功能初步实现（不能跳转）
+
 
 ## 1.项目总览
 * 1.1 项目介绍（Description)
