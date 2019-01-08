@@ -26,7 +26,7 @@
 * [数据execl](https://github.com/jisheng1997/MoviesGuideApp/blob/master/project/%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1Top250.xlsx) <br>
 
 
-## 资料地址 <br>
+## 2.资料地址 <br>
 * [git下载地址](https://git-scm.com/download/win) <br>
 * [Android studio下将项目代码上传至github包括更新，同步，创建依赖](https://blog.csdn.net/u013309870/article/details/79214030) <br>
 * [GitHub上README.md排版样式教程](https://blog.csdn.net/u012067966/article/details/50736647) <br>
@@ -37,7 +37,7 @@
 
 
 
-## 第一行代码 <br>
+## 3.《第一行代码》相关<br>
 * p98 圆形进度条加载
 * p101 确认对话框
 * p125 Listview下滑列表——用于展示电影的列表
