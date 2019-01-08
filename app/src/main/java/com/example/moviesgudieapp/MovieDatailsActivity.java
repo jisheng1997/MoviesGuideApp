@@ -1,4 +1,4 @@
-package com.example.moviesgudie;
+package com.example.moviesgudieapp;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

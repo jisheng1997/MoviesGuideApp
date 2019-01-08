@@ -4,8 +4,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:background="@drawable/linearlayoutborder"
-    android:layout_marginTop="15dp">
+    android:background="@drawable/linearlayoutborder">
 
     <ImageView
         android:id="@+id/movies_image"

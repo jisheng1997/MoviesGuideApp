@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_Layout_user"
+    android:id="@+id/title"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:background="@color/Blue"
@@ -10,7 +10,7 @@
     android:orientation="horizontal"
     app:layout_constraintHeight_percent="0.1"
     app:layout_constraintHorizontal_bias="0.0"
-    app:layout_constraintBottom_toTopOf="@+id/main_login_listing_movies">
+    app:layout_constraintBottom_toTopOf="@+id/listing_movies">
 
     <ImageView
         android:id="@+id/backView"
@@ -29,7 +29,7 @@
         android:layout_gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:iconifiedByDefault="false"
+        app:iconifiedByDefault="false"
         android:queryHint="search"
         />
 </LinearLayout>

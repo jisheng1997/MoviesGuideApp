@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main_log_layout"
+    android:id="@+id/favorite_list_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff">
-    <include layout="@layout/listing_movies" />
     <include layout="@layout/favorite_list_title" />
+    <include layout="@layout/listing_movies" />
+
 </android.support.constraint.ConstraintLayout>

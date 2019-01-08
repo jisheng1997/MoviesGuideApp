@@ -1,4 +1,4 @@
-package com.example.moviesgudie;
+package com.example.moviesgudieapp;
 
 import android.content.Context;
 import java.util.List;

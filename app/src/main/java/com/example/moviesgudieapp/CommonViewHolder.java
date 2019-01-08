@@ -1,4 +1,4 @@
-package com.example.moviesgudie;
+package com.example.moviesgudieapp;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;

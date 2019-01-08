@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.moviesgudie">
+    package="com.example.moviesgudieapp">
 
     <application
         android:allowBackup="true"
@@ -14,10 +14,12 @@
             android:label="This is FirstActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".FavoriteActivity"></activity>
+        <activity android:name=".MovieDatailsActivity"></activity>
+        <activity android:name=".HistoryActivity"></activity>
     </application>
 
 </manifest>

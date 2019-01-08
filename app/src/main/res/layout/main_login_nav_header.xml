@@ -15,4 +15,5 @@
         android:layout_alignParentBottom="true"
         android:text="@string/defaultName"
         android:textColor="@color/Black"/>
+
 </RelativeLayout>

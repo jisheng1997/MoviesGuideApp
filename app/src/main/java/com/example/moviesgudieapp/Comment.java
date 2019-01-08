@@ -1,4 +1,4 @@
-package com.example.moviesgudie;
+package com.example.moviesgudieapp;
 
 public class Comment {
     private String username;

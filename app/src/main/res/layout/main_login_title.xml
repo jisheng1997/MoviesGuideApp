@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_login_title"
+    android:id="@+id/title"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:background="@color/Blue"
     android:gravity="top"
     android:orientation="horizontal"
-    app:layout_constraintBottom_toTopOf="@+id/main_login_listing_movies"
+    app:layout_constraintBottom_toTopOf="@+id/listing_movies"
     app:layout_constraintHeight_percent="0.1"
     app:layout_constraintHorizontal_bias="0.0">
 
@@ -36,17 +36,15 @@
             android:textColor="@color/White"
             android:textSize="16sp" />
 
-        <!--<SearchView-->
-            <!--android:id="@+id/searchView"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_vertical"-->
-            <!--android:layout_marginStart="15dp"-->
-            <!--android:layout_marginLeft="15dp"-->
-            <!--android:iconifiedByDefault="false"-->
-            <!--android:queryHint="search"-->
-            <!--app:iconifiedByDefault="true"-->
-            <!--/>-->
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:queryHint="search"
+            app:iconifiedByDefault="false" />
 
     </android.support.v7.widget.Toolbar>
 

@@ -1,6 +1,11 @@
-package com.example.moviesgudie;
+package com.example.moviesgudieapp;
 
-public class Movie {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class Movie implements Parcelable ,Serializable {
     private String name;
     private int imageId;
     private String directorName;
@@ -12,6 +17,10 @@ public class Movie {
     public Movie(String name, int imageId){
         this.name = name;
         this.imageId = imageId;
+    }
+
+    public Movie(){
+
     }
 
     public Movie(String name, int imageId, String directorName, int years, String staring, float db_Rates, float imdb_Rates){
@@ -42,5 +51,30 @@ public class Movie {
         return imageId;
     }
 
+    public static final Parcelable.Creator<Movie> CREATOR = new Creator<Movie>() {
+        @Override
+        public Movie createFromParcel(Parcel source) {
+            Movie mMovie = new Movie();
+            mMovie.name = source.readString();
+            mMovie.staring = source.readString();
+            mMovie.imageId = source.readInt();
+            return mMovie;
+        }
+        @Override
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int flags) {
+        parcel.writeString(name);
+        parcel.writeString(staring);
+        parcel.writeInt(imageId);
+    }
 }
