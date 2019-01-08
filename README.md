@@ -2,7 +2,7 @@
 
 # 版本更新
 * Ver 1.1 main login/movie/my favorite list界面UI设计初步完成 by jisheng
-* Ver 1.2 main login界面抽屉功能初步实现（不能跳转）by jisheng
+* Ver 1.2 main login界面抽屉功能初步实现（不能跳转）by jisheng 2019/1/8 6:34
 
 
 ## 1.项目总览
