@@ -1,6 +1,5 @@
 package com.example.moviesgudieapp;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class RegisterActivity extends BaseActivity {
@@ -12,7 +11,7 @@ public class RegisterActivity extends BaseActivity {
 
     @Override
     protected void initView(){
-
+        setContentView(R.layout.register);
     }
 
     @Override

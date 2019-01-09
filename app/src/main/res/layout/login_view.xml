@@ -12,7 +12,7 @@
 
 
     <EditText
-        android:id="@+id/Account"
+        android:id="@+id/account_EditText"
         android:layout_width="247dp"
         android:layout_height="39dp"
         android:layout_marginTop="150dp"
@@ -24,7 +24,7 @@
         android:textColorHint="@color/Gray" />
 
     <EditText
-        android:id="@+id/Password"
+        android:id="@+id/password_EditText"
         android:layout_width="247dp"
         android:layout_height="39dp"
         android:layout_marginBottom="30dp"
@@ -36,7 +36,7 @@
         android:textColorHint="@color/Gray" />
 
     <Button
-        android:id="@+id/Login"
+        android:id="@+id/login_btn"
         android:layout_width="247dp"
         android:layout_height="wrap_content"
         android:text="Login" />
@@ -52,10 +52,12 @@
             android:textColor="@color/Black" />
 
         <TextView
+            android:id="@+id/loginTo_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Register"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/colorAccent"
+            android:clickable="true"/>
 
     </LinearLayout>
 

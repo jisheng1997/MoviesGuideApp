@@ -12,7 +12,7 @@
 
 
     <EditText
-        android:id="@+id/Account"
+        android:id="@+id/account_EditText"
         android:layout_width="247dp"
         android:layout_height="39dp"
         android:layout_marginTop="150dp"
@@ -24,7 +24,7 @@
         android:textColorHint="@color/Gray" />
 
     <EditText
-        android:id="@+id/Password"
+        android:id="@+id/password_EditText"
         android:layout_width="247dp"
         android:layout_height="39dp"
         android:layout_marginBottom="30dp"
@@ -36,7 +36,7 @@
         android:textColorHint="@color/Gray" />
 
     <EditText
-        android:id="@+id/ConfirmPassword"
+        android:id="@+id/confirm_password_EditText"
         android:layout_width="247dp"
         android:layout_height="39dp"
         android:layout_marginBottom="30dp"
@@ -48,7 +48,7 @@
         android:textColorHint="@color/Gray" />
 
     <Button
-        android:id="@+id/Register"
+        android:id="@+id/register_btn"
         android:layout_width="247dp"
         android:layout_height="wrap_content"
         android:text="Register" />
@@ -60,13 +60,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New account?"
+            android:text="Have an account?"
             android:textColor="@color/Black" />
 
         <TextView
+            android:id="@+id/registerTo_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Register"
+            android:text="Login"
+            android:clickable="true"
             android:textColor="@color/colorAccent" />
 
     </LinearLayout>

@@ -10,19 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Base">
         <activity
-            android:name=".MainLoginActivity"
-            android:label="This is FirstActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:name=".MainLoginActivity">
         </activity>
         <activity android:name=".FavoriteActivity" />
         <activity android:name=".MovieDatailsActivity" />
         <activity android:name=".HistoryActivity" />
         <activity android:name=".MainLogoutActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".LoginActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity android:name=".BaseActivity" />
         <activity android:name=".RegisterActivity"></activity>
     </application>
