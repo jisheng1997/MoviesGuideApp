@@ -14,7 +14,7 @@
 >
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/movie_info_title_ImageView"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginLeft="20dp"

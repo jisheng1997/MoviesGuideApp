@@ -6,4 +6,5 @@
     <string name="username_hint">please type in your username</string>
     <string name="password_hint">please type in your password</string>
     <string name="confirm_password_hint">please confirm your password</string>
+    <string name="cancel">cancel</string>
 </resources>

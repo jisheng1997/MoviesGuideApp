@@ -24,9 +24,6 @@ public class MainLoginActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initView();
-        initData();
-        initListener();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         MovieAdapter movieadapter = new MovieAdapter(this, MoviesDetails);

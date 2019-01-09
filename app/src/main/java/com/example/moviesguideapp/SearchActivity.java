@@ -4,53 +4,51 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 
-public class FavoriteActivity extends BaseActivity {
 
-    private ArrayList <Movie> MovieList = new ArrayList<>();
+public class SearchActivity extends BaseActivity {
+
+    private ArrayList<Movie> MoviesDetails = new ArrayList<>();
+    private Bundle bundle = new Bundle();
     private RecyclerView recyclerView;
-    private ImageView imageView;
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        MovieAdapter movieadapter = new MovieAdapter(this,MovieList);
+        MovieAdapter movieadapter = new MovieAdapter(this, MoviesDetails);
         recyclerView.setAdapter(movieadapter);
     }
 
-    @Override
-    protected void initData(){
-        Bundle bundle = this.getIntent().getExtras();
-        MovieList = (ArrayList<Movie>)bundle.getSerializable("MoviesList");
+    protected void initData() {
+        Movie movie1 = new Movie("肖申克的救赎 The Shawshank Redemption", R.drawable.moren);
+        MoviesDetails.add(movie1);
     }
 
-    @Override
-    protected void initView(){
-        setContentView(R.layout.favorite_list);
+    protected void initView() {
+        setContentView(R.layout.search);
         recyclerView = findViewById(R.id.movies_list);
-        imageView = findViewById(R.id.back);
+        textView = findViewById(R.id.search_title_back);
     }
 
     @Override
     protected void initListener(){
-        imageView.setOnClickListener(this);
+        textView.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view){
         switch (view.getId()){
-            case R.id.back:
+            case R.id.search_title_back:
                 onBack();
-                overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
                 break;
             default:
                 break;
         }
     }
-
-
 }
