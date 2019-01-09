@@ -6,7 +6,7 @@
 * Ver 1.3 实现了main login与favorite界面的切换,页面之间的传值，页面切换的动画（向右滑入） by js 2019/1/8 14:18
 * Ver 1.4 by js 2019/1/8 3:46
     * (1) 添加了新依赖    androidTestImplementation 'junit:junit:4.12'  androidTestImplementation 'com.android.support.test:rules:1.0.2'
-    * (2) 所有Activity父类BaseActivity新增三个抽象方法，重构MainLoginActivity代码
+    * (2) 所有Activity的父类BaseActivity新增了三个抽象方法，并重构了MainLoginActivity代码
 
 
 ## 1.项目总览
