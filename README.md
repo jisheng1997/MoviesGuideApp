@@ -18,7 +18,12 @@
     * (2) 新增LoginActivity与RegisterActivity类
 * Ver 1.7 by 季晟 2019/1/9 7:32
     * (1) 重构了LoginActivity代码，增加了返回功能
-    * (2) 实现了login与register界面的切换，页面切换的动画 <br><br><br>
+    * (2) 实现了login与register界面的切换，页面切换的动画    <br><br><br>
+* Ver 1.8 by 季晟 2019/1/9 17:00
+    * (1) main logout界面UI设计初步完成
+    * (2) 实现了main logout与login/register界面的切换
+    * (3) 新增slide动画
+    * (4) 实现了点击空白处隐藏输入法功能
 
 ## 1.项目总览
 * 1.1 项目介绍（Description)
