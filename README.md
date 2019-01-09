@@ -1,12 +1,18 @@
 # movies-guide-app
 
 # 版本更新
-* Ver 1.1 main login/movie/my favorite list/login界面UI设计初步完成 by js hfj,dty,tlw
-* Ver 1.2 main login界面抽屉功能初步实现（不能跳转）by js 2019/1/8 6:34
-* Ver 1.3 实现了main login与favorite界面的切换,页面之间的传值，页面切换的动画（向右滑入） by js 2019/1/8 14:18
+* Ver 1.1 by js hfj,dty,tlw
+    * main login/movie/my favorite list/login界面UI设计初步完成 
+* Ver 1.2 by js 2019/1/8 6:34
+    * main login界面抽屉功能初步实现（不能跳转）
+* Ver 1.3 by js 2019/1/8 14:18
+    * 实现了main login与favorite界面的切换,页面之间的传值，页面切换的动画（向右滑入） 
 * Ver 1.4 by js 2019/1/9 3:46
-    * (1) 添加了新依赖    androidTestImplementation 'junit:junit:4.12'  androidTestImplementation 'com.android.support.test:rules:1.0.2'
+    * (1) 添加了新依赖 androidTestImplementation 'junit:junit:4.12' androidTestImplementation 'com.android.support.test:rules:1.0.2'
     * (2) 所有Activity的父类BaseActivity新增了三个抽象方法，并重构了MainLoginActivity代码
+* Ver 1.5 by js 2019/1/9 4:58
+    * (1) 重构了FavoriteActivity代码，增加了返回功能
+    * (2) BaseActivity新增了三种页面切换的方法
 
 
 ## 1.项目总览
