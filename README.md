@@ -16,6 +16,9 @@
 * Ver 1.6 by 季晟/韩馥骏/陶李玮 2019/1/9 6:30
     * (1) login/register界面UI设计初步完成
     * (2) 新增LoginActivity与RegisterActivity类
+* Ver 1.7 by 季晟 2019/1/9 7：32
+    * (1) 重构了LoginActivity代码，增加了返回功能
+    * (2) 实现了login与favourite界面的切换，页面切换的动画
 
 ## 1.项目总览
 * 1.1 项目介绍（Description)
