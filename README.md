@@ -13,7 +13,7 @@
 * Ver 1.5 by js 2019/1/9 4:58
     * (1) 重构了FavoriteActivity代码，增加了返回功能
     * (2) BaseActivity新增了三种页面切换的方法
-* Ver 1.6 by js hfj tlw 2019/1/9 4:58
+* Ver 1.6 by js hfj tlw 2019/1/9 6:30
     * (1) login/register界面UI设计初步完成
     * (2) 新增LoginActivity与RegisterActivity类
 
