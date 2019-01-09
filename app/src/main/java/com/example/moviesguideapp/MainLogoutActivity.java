@@ -1,4 +1,4 @@
-package com.example.moviesgudieapp;
+package com.example.moviesguideapp;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,9 +10,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+
 import java.util.ArrayList;
 
-public class MainLoginActivity extends BaseActivity {
+public class MainLogoutActivity extends BaseActivity {
 
     private ArrayList<Movie> MoviesDetails = new ArrayList<>();
     private DrawerLayout mDrawerLayout;
@@ -55,7 +56,7 @@ public class MainLoginActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        setContentView(R.layout.main_login);
+        setContentView(R.layout.main_logout);
         recyclerView = findViewById(R.id.movies_list);
         mDrawerLayout = findViewById(R.id.main_login_DrawerLayout);
         imageView = findViewById(R.id.main_login_title_ImageView);
@@ -64,35 +65,25 @@ public class MainLoginActivity extends BaseActivity {
 
     @Override
     protected void initListener() {
+        imageView.setOnClickListener(this);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
-                    case R.id.menu_item_MyFavorite:
-                        bundle.putSerializable("MoviesList", MoviesDetails);
-                        openActivity(FavoriteActivity.class,bundle);
-                        overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                    case R.id.menu_item_register_login:
+                        openActivity(LoginActivity.class);
+                        overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
                         mDrawerLayout.closeDrawers();
-                        break;
-                    case R.id.menu_item_MyHistory:
-                        bundle.putSerializable("MoviesList", MoviesDetails);
-                        openActivity(HistoryActivity.class,bundle);
-                        overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
-                        mDrawerLayout.closeDrawers();
-                        break;
-                    default:
                         break;
                 }
                 return false;
             }
         });
-
-        imageView.setOnClickListener(this);
     }
 
     @Override
-    public void onClick(View view){
-        switch (view.getId()){
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.main_login_title_ImageView:
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 break;
@@ -101,4 +92,3 @@ public class MainLoginActivity extends BaseActivity {
         }
     }
 }
-

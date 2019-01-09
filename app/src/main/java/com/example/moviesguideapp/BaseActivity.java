@@ -1,4 +1,4 @@
-package com.example.moviesgudieapp;
+package com.example.moviesguideapp;
 
 import android.app.Activity;
 import android.content.Intent;

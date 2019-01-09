@@ -17,14 +17,6 @@ android {
         }
     }
 
-    sourceSets{
-        main{
-            res.srcDirs = [
-                    'src/main/res/main_login_layout',
-                    'src/main/res',
-            ]
-        }
-    }
 }
 
 dependencies {

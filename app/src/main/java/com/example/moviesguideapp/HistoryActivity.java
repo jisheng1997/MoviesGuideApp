@@ -1,16 +1,14 @@
-package com.example.moviesgudieapp;
+package com.example.moviesguideapp;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-
 import java.util.ArrayList;
 
-public class FavoriteActivity extends BaseActivity {
-
-    private ArrayList <Movie> MovieList = new ArrayList<>();
+public class HistoryActivity extends BaseActivity {
+    private ArrayList<Movie> MovieList = new ArrayList<>();
     private RecyclerView recyclerView;
     private ImageView imageView;
 
@@ -34,7 +32,7 @@ public class FavoriteActivity extends BaseActivity {
 
     @Override
     protected void initView(){
-        setContentView(R.layout.favorite_list);
+        setContentView(R.layout.history_list);
         recyclerView = findViewById(R.id.movies_list);
         imageView = findViewById(R.id.back);
     }
@@ -49,12 +47,10 @@ public class FavoriteActivity extends BaseActivity {
         switch (view.getId()){
             case R.id.back:
                 onBack();
-                overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+                overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
                 break;
             default:
                 break;
         }
     }
-
-
 }
