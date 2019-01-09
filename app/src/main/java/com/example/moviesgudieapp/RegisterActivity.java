@@ -1,8 +1,9 @@
 package com.example.moviesgudieapp;
 
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class LoginActivity extends BaseActivity {
+public class RegisterActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -11,7 +12,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void initView(){
-        setContentView(R.layout.login);
+
     }
 
     @Override
@@ -23,5 +24,4 @@ public class LoginActivity extends BaseActivity {
     protected void initListener(){
 
     }
-
 }

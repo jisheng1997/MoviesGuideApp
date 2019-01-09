@@ -3,4 +3,7 @@
     <string name="defaultName">zoslen</string>
     <string name="menu_favorite">Your Watchlist</string>
     <string name="menu_history">Your History</string>
+    <string name="username_hint">please type in your username</string>
+    <string name="password_hint">please type in your password</string>
+    <string name="confirm_password_hint">please confirm your password</string>
 </resources>

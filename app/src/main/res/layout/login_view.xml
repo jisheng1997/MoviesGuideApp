@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/login_view"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:background="@color/White"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    app:layout_constraintHeight_percent="0.9"
+    app:layout_constraintTop_toBottomOf="@+id/login_register_title">
+
+
+    <EditText
+        android:id="@+id/Account"
+        android:layout_width="247dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="30dp"
+        android:hint="@string/username_hint"
+        android:selectAllOnFocus="false"
+        android:singleLine="true"
+        android:textColor="@color/Black"
+        android:textColorHint="@color/Gray" />
+
+    <EditText
+        android:id="@+id/Password"
+        android:layout_width="247dp"
+        android:layout_height="39dp"
+        android:layout_marginBottom="30dp"
+        android:hint="@string/password_hint"
+        android:inputType="textPassword"
+        android:selectAllOnFocus="false"
+        android:singleLine="true"
+        android:textColor="@color/Black"
+        android:textColorHint="@color/Gray" />
+
+    <Button
+        android:id="@+id/Login"
+        android:layout_width="247dp"
+        android:layout_height="wrap_content"
+        android:text="Login" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New account?"
+            android:textColor="@color/Black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:textColor="@color/colorAccent" />
+
+    </LinearLayout>
+
+</LinearLayout>
