@@ -13,7 +13,7 @@
     app:layout_constraintBottom_toTopOf="@+id/listing_movies">
 
     <ImageView
-        android:id="@+id/backView"
+        android:id="@+id/back"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginLeft="20dp"

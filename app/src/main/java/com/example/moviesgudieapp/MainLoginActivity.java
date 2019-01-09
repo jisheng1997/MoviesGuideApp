@@ -71,20 +71,16 @@ public class MainLoginActivity extends BaseActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.menu_item_MyFavorite:
-                        Intent intent1 = new Intent(MainLoginActivity.this,
-                                FavoriteActivity.class);
                         bundle.putSerializable("MoviesList", MoviesDetails);
-                        intent1.putExtras(bundle);
-                        startActivity(intent1);
+                        openActivity(FavoriteActivity.class,bundle);
                         overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                        mDrawerLayout.closeDrawers();
                         break;
                     case R.id.menu_item_MyHistory:
-                        Intent intent2 = new Intent(MainLoginActivity.this,
-                                HistoryActivity.class);
                         bundle.putSerializable("MoviesList", MoviesDetails);
-                        intent2.putExtras(bundle);
-                        startActivity(intent2);
+                        openActivity(HistoryActivity.class,bundle);
                         overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                        mDrawerLayout.closeDrawers();
                         break;
                     default:
                         break;

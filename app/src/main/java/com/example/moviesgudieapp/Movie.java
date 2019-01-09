@@ -13,6 +13,7 @@ public class Movie implements Parcelable ,Serializable {
     private String staring;
     private float db_Rates;
     private float imdb_Rates;
+    private int movieId;
 
     public Movie(String name, int imageId){
         this.name = name;
@@ -23,7 +24,7 @@ public class Movie implements Parcelable ,Serializable {
 
     }
 
-    public Movie(String name, int imageId, String directorName, int years, String staring, float db_Rates, float imdb_Rates){
+    public Movie(String name, int imageId, String directorName, int years, String staring, float db_Rates, float imdb_Rates, int movieID){
         this.db_Rates = db_Rates;
         this.name = name;
         this.imageId=imageId;
@@ -31,7 +32,9 @@ public class Movie implements Parcelable ,Serializable {
         this.imdb_Rates = imdb_Rates;
         this.years = years;
         this.staring = staring;
+        this.movieId = movieID;
     }
+
 
     public String getDirectorName() { return directorName; }
 

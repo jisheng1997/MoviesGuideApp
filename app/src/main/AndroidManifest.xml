@@ -22,7 +22,8 @@
         <activity android:name=".MovieDatailsActivity" />
         <activity android:name=".HistoryActivity" />
         <activity android:name=".MainLogoutActivity" />
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".BaseActivity" />
     </application>
 
 </manifest>
