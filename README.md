@@ -16,10 +16,11 @@
 * Ver 1.6 by 季晟/韩馥骏/陶李玮 2019/1/9 6:30
     * (1) login/register界面UI设计初步完成
     * (2) 新增LoginActivity与RegisterActivity类
-* Ver 1.7 by 季晟 2019/1/9 7：32
+* Ver 1.7 by 季晟 2019/1/9 7:32
     * (1) 重构了LoginActivity代码，增加了返回功能
     * (2) 实现了login与favourite界面的切换，页面切换的动画
-
+<br>
+<br>
 ## 1.项目总览
 * 1.1 项目介绍（Description)
      * We are about to make a movie guide app which can show the users the information of movies by phone with andriod phone.This software is mainly used to serve the people who look for the movies. Users can find the information of movie by searching the      movie's name from the database. Our software can show the basic information, brief description and comments of movies. Otherwise, Our   software can recommand movies to users by different sorts.What’s more, our software has a clear and simple interface. Users can easily learn how to use it at the first time they are using it.
