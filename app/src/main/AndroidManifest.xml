@@ -14,12 +14,15 @@
             android:label="This is FirstActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FavoriteActivity"></activity>
-        <activity android:name=".MovieDatailsActivity"></activity>
-        <activity android:name=".HistoryActivity"></activity>
+        <activity android:name=".FavoriteActivity" />
+        <activity android:name=".MovieDatailsActivity" />
+        <activity android:name=".HistoryActivity" />
+        <activity android:name=".MainLogoutActivity" />
+        <activity android:name=".LoginActivity"></activity>
     </application>
 
 </manifest>
