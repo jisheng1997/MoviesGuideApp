@@ -1,8 +1,9 @@
 # movies-guide-app
 
 # 版本更新
-* Ver 1.1 main login/movie/my favorite list界面UI设计初步完成 by jisheng
-* Ver 1.2 main login界面抽屉功能初步实现（不能跳转）by jisheng 2019/1/8 6:34
+* Ver 1.1 main login/movie/my favorite list/login界面UI设计初步完成 by js hfj,dty,tlw
+* Ver 1.2 main login界面抽屉功能初步实现（不能跳转）by js 2019/1/8 6:34
+* Ver 1.3 实现了main login与favorite界面的切换,页面之间的传值，页面切换的动画（向右滑入） by js 2019/1/8 14:18
 
 
 ## 1.项目总览
