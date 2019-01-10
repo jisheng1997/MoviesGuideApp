@@ -24,7 +24,13 @@
     * (2) 实现了main logout与login/register界面的切换
     * (3) 新增slide动画
     * (4) 实现了点击空白处隐藏输入法功能
-    * (5) 重构了RegisterActivity代码，增加了返回功能<br><br><br>
+    * (5) 重构了RegisterActivity代码，增加了返回功能
+* Ver 1.9 by 季晟 陶李玮 2019/1/10 0:55
+    * (1) search界面UI设计初步完成
+    * (2) 新增了SearchActivity类
+    * (3) 重构了MovieDetailsActivity代码
+    * (4) 实现了状态栏透明与操作栏隐藏的功能(沉浸式体验)
+    * (5) 修改了login/register界面UI设计 <br><br><br>
     
 ## 1.项目总览
 * 1.1 项目介绍（Description)
