@@ -31,6 +31,7 @@
     * (3) 重构了MovieDetailsActivity代码
     * (4) 实现了状态栏透明与操作栏隐藏的功能(沉浸式体验)
     * (5) 修改了login/register界面UI设计 <br><br><br>
+* Ver 1.10 by 季晟/陶李玮/韩馥骏/董天元 2019
     
 ## 1.项目总览
 * 1.1 项目介绍（Description)
