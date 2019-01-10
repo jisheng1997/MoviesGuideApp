@@ -31,7 +31,13 @@
     * (3) 重构了MovieDetailsActivity代码
     * (4) 实现了状态栏透明与操作栏隐藏的功能(沉浸式体验)
     * (5) 修改了login/register界面UI设计 <br><br><br>
-* Ver 1.10 by 季晟/陶李玮/韩馥骏/董天元 2019
+* Ver 1.10 & Ver1.11 by 季晟/陶李玮/韩馥骏/董天元 2019/1/10 15:19
+    * (1) 重写了MovieAdapter和CommentsAdapter类
+    * (2) 实现了search框到search界面的页面切换
+    * (3) 修改了Movie类
+    * (4) Mainlogout类新增了数据库连接，读取数据的方法
+    * (5) 实现了特定movie至Moviedetails界面的页面切换
+    * (6) 实现了特定movie至Moviedetails界面的传值
     
 ## 1.项目总览
 * 1.1 项目介绍（Description)
