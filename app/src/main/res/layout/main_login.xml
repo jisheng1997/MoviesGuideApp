@@ -26,12 +26,11 @@
 
 <android.support.design.widget.NavigationView
     android:id="@+id/main_login_navView"
-    android:layout_width="match_parent"
+    android:layout_width="250dp"
     android:layout_height="match_parent"
     android:layout_gravity="start"
     app:menu="@menu/main_login"
     app:headerLayout="@layout/main_login_nav_header">
-
 </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>

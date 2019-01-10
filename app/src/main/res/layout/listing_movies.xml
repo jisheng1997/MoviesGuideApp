@@ -10,10 +10,10 @@
     android:orientation="vertical"
     app:layout_constraintHorizontal_bias="0.0"
     app:layout_constraintTop_toBottomOf="@+id/title"
-    app:layout_constraintHeight_percent="0.9">
+    app:layout_constraintHeight_percent="0.85">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/movies_list"
+        android:id="@+id/movies_list_RecyclerView"
         android:layout_height="match_parent"
         android:layout_width="match_parent" />
 </LinearLayout>

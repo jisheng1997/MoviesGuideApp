@@ -7,11 +7,11 @@ public class CommentsAdapter extends CommonRecycleAdapter<Comment> {
     private CommonViewHolder.onItemCommonClickListener commonClickListener;
 
     public CommentsAdapter(Context context, List<Comment> dataList) {
-        super(context, dataList, R.layout.fragment_comments);
+        super(context, dataList, R.layout.item_comments);
     }
 
     public CommentsAdapter(Context context, List<Comment> dataList, CommonViewHolder.onItemCommonClickListener commonClickListener) {
-        super(context, dataList, R.layout.fragment_comments);
+        super(context, dataList, R.layout.item_comments);
         this.commonClickListener = commonClickListener;
     }
 

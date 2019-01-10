@@ -31,7 +31,7 @@ public class FavoriteActivity extends BaseActivity {
     @Override
     protected void initView(){
         setContentView(R.layout.favorite_list);
-        recyclerView = findViewById(R.id.movies_list);
+        recyclerView = findViewById(R.id.movies_list_RecyclerView);
         imageView = findViewById(R.id.back);
     }
 

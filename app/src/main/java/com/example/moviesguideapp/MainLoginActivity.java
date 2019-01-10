@@ -5,8 +5,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -24,9 +24,9 @@ public class MainLoginActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        MovieAdapter movieadapter = new MovieAdapter(this, MoviesDetails);
+        MovieAdapter movieadapter = new MovieAdapter(this,MoviesDetails);
         recyclerView.setAdapter(movieadapter);
     }
 
@@ -53,7 +53,7 @@ public class MainLoginActivity extends BaseActivity {
     @Override
     protected void initView() {
         setContentView(R.layout.main_login);
-        recyclerView = findViewById(R.id.movies_list);
+        recyclerView = findViewById(R.id.movies_list_RecyclerView);
         mDrawerLayout = findViewById(R.id.main_login_DrawerLayout);
         imageView = findViewById(R.id.main_login_title_ImageView);
         navigationView = findViewById(R.id.main_login_navView);

@@ -32,7 +32,7 @@ public class SearchActivity extends BaseActivity {
 
     protected void initView() {
         setContentView(R.layout.search);
-        recyclerView = findViewById(R.id.movies_list);
+        recyclerView = findViewById(R.id.movies_list_RecyclerView);
         textView = findViewById(R.id.search_title_back);
     }
 

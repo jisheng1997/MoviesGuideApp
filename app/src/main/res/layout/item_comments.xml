@@ -18,7 +18,7 @@
         android:id="@+id/movies_comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fucking good!"
+        android:text="good!"
         android:textColor="@color/Black"
         android:textSize="50px" />
 </LinearLayout>
