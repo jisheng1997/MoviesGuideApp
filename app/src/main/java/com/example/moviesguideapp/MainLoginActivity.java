@@ -18,8 +18,12 @@ public class MainLoginActivity extends BaseActivity {
     private DrawerLayout mDrawerLayout;
     private Bundle bundle = new Bundle();
     private RecyclerView recyclerView;
-    private ImageView imageView;
+    private ImageView back;
     private NavigationView navigationView;
+    public static final String TAG="MainLoginActivity";
+    private String response = null;
+    private ImageView searchView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,21 +36,21 @@ public class MainLoginActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        Movie movie1 = new Movie("肖申克的救赎 The Shawshank Redemption", R.drawable.moren);
+        Movie movie1 = new Movie("The Shawshank Redemption", R.drawable.m01);
         MoviesDetails.add(movie1);
-        Movie movie2 = new Movie("阿甘正传 Forrest Gump", R.drawable.moren);
+        Movie movie2 = new Movie("Forrest Gump", R.drawable.m01);
         MoviesDetails.add(movie2);
-        Movie movie3 = new Movie("辛德勒的名单 Schindler's List", R.drawable.moren);
+        Movie movie3 = new Movie("Schindler's List", R.drawable.m01);
         MoviesDetails.add(movie3);
-        Movie movie4 = new Movie("忠犬八公的故事 Hachi: A Dog's Tale", R.drawable.moren);
+        Movie movie4 = new Movie("Hachi: A Dog's Tale", R.drawable.m01);
         MoviesDetails.add(movie4);
-        Movie movie5 = new Movie("海上钢琴师 La leggenda del pianista sull'oceano", R.drawable.moren);
+        Movie movie5 = new Movie("La leggenda del pianista sull'oceano", R.drawable.m01);
         MoviesDetails.add(movie5);
-        Movie movie6 = new Movie("盗梦空间 Inception", R.drawable.moren);
+        Movie movie6 = new Movie("Inception", R.drawable.m01);
         MoviesDetails.add(movie6);
-        Movie movie7 = new Movie("盗梦空间 Inception", R.drawable.moren);
+        Movie movie7 = new Movie("Inception", R.drawable.m01);
         MoviesDetails.add(movie7);
-        Movie movie8 = new Movie("盗梦空间 Inception", R.drawable.moren);
+        Movie movie8 = new Movie("Inception", R.drawable.m01);
         MoviesDetails.add(movie8);
     }
 
@@ -55,8 +59,9 @@ public class MainLoginActivity extends BaseActivity {
         setContentView(R.layout.main_login);
         recyclerView = findViewById(R.id.movies_list_RecyclerView);
         mDrawerLayout = findViewById(R.id.main_login_DrawerLayout);
-        imageView = findViewById(R.id.main_login_title_ImageView);
+        back = findViewById(R.id.main_login_title_ImageView);
         navigationView = findViewById(R.id.main_login_navView);
+        searchView = findViewById(R.id.searchView);
     }
 
     @Override
@@ -84,7 +89,8 @@ public class MainLoginActivity extends BaseActivity {
             }
         });
 
-        imageView.setOnClickListener(this);
+        back.setOnClickListener(this);
+        searchView.setOnClickListener(this);
     }
 
     @Override
@@ -93,6 +99,8 @@ public class MainLoginActivity extends BaseActivity {
             case R.id.main_login_title_ImageView:
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 break;
+            case R.id.searchView:
+                openActivity(SearchActivity.class);
             default:
                 break;
         }

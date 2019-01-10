@@ -1,83 +1,78 @@
 package com.example.moviesguideapp;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import java.io.Serializable;
 
-public class Movie implements Parcelable ,Serializable {
+public class Movie implements Serializable {
+
+    private int id_movie;
+    private int movie_pic;
+    private String movie_type;
     private String name;
-    private int imageId;
-    private String directorName;
-    private int years;
+    private String director;
     private String staring;
-    private float db_Rates;
-    private float imdb_Rates;
-    private int movieId;
+    private int years;
+    private String description;
+    private float rating_douban;
+    private float rating_IMDB;
 
-    public Movie(String name, int imageId){
+    Movie(String name, int imageId){
         this.name = name;
-        this.imageId = imageId;
+        this.movie_pic = imageId;
     }
 
-    public Movie(){
+    Movie(){}
 
-    }
-
-    public Movie(String name, int imageId, String directorName, int years, String staring, float db_Rates, float imdb_Rates, int movieID){
-        this.db_Rates = db_Rates;
+    public Movie(int movieId, int imageId, String movieType, String name, String directorName, String staring, int years, String description, float db_Rates, float imdb_Rates){
+        this.id_movie = movieId;
+        this.movie_pic = imageId;
+        this.movie_type = movieType;
         this.name = name;
-        this.imageId=imageId;
-        this.directorName = directorName;
-        this.imdb_Rates = imdb_Rates;
-        this.years = years;
+        this.director = directorName;
         this.staring = staring;
-        this.movieId = movieID;
+        this.years = years;
+        this.description =description;
+        this.rating_douban = db_Rates;
+        this.rating_IMDB = imdb_Rates;
     }
 
+    public int getId_movie() {
+        return id_movie;
+    }
 
-    public String getDirectorName() { return directorName; }
+    public int getMovie_pic() {
+        return movie_pic;
+    }
 
-    public int getYears() { return years; }
+    public String getMovietype() {
+        return movie_type;
+    }
 
-    public String getStaring() { return staring; }
-
-    public float getDb_Rates() { return db_Rates; }
-
-    public float getImdb_Rates() { return imdb_Rates; }
-
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public int getImageId(){
-        return imageId;
+    public String getDirector() {
+        return director;
     }
 
-    public static final Parcelable.Creator<Movie> CREATOR = new Creator<Movie>() {
-        @Override
-        public Movie createFromParcel(Parcel source) {
-            Movie mMovie = new Movie();
-            mMovie.name = source.readString();
-            mMovie.staring = source.readString();
-            mMovie.imageId = source.readInt();
-            return mMovie;
-        }
-        @Override
-        public Movie[] newArray(int size) {
-            return new Movie[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
+    public String getStaring() {
+        return staring;
     }
 
-    @Override
-    public void writeToParcel(Parcel parcel, int flags) {
-        parcel.writeString(name);
-        parcel.writeString(staring);
-        parcel.writeInt(imageId);
+    public int getYears() {
+        return years;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public float getRating_douban() {
+        return rating_douban;
+    }
+
+    public float getRating_IMDB() {
+        return rating_IMDB;
+    }
+
 }

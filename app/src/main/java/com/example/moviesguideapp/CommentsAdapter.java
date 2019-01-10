@@ -1,24 +1,55 @@
 package com.example.moviesguideapp;
 
-import android.content.Context;
+import android.app.Activity;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
 import java.util.List;
 
-public class CommentsAdapter extends CommonRecycleAdapter<Comment> {
-    private CommonViewHolder.onItemCommonClickListener commonClickListener;
+public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHolder>{
+    private List<Comment> mCommentList;
+    private Activity mActivity;
 
-    public CommentsAdapter(Context context, List<Comment> dataList) {
-        super(context, dataList, R.layout.item_comments);
+    static class ViewHolder extends RecyclerView.ViewHolder{
+        View commentView;
+        TextView userName;
+        TextView content;
+
+        public  ViewHolder(View view){
+            super(view);
+            commentView = view;
+            userName = (TextView)view.findViewById(R.id.movies_comment_username);
+            content = (TextView) view.findViewById(R.id.movies_comment);
+        }
     }
 
-    public CommentsAdapter(Context context, List<Comment> dataList, CommonViewHolder.onItemCommonClickListener commonClickListener) {
-        super(context, dataList, R.layout.item_comments);
-        this.commonClickListener = commonClickListener;
+    public CommentsAdapter(Activity activity, List<Comment> CommentList){
+        mActivity = activity;
+        mCommentList = CommentList;
     }
 
     @Override
-    void bindData(CommonViewHolder holder, Comment comment) {
-        holder.setText(R.id.movies_comment_username,comment.getUserName());
-        holder.setText(R.id.movies_comment,comment.getComment());
-        holder.setCommonClickListener(commonClickListener);
+    public CommentsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_comments,parent,false);
+        final CommentsAdapter.ViewHolder holder = new CommentsAdapter.ViewHolder(view);
+
+        return holder;
     }
+
+    @Override
+    public void onBindViewHolder(CommentsAdapter.ViewHolder holder, int position){
+        Comment comment = mCommentList.get(position);
+        holder.userName.setText(comment.getUserName());
+        holder.content.setText(comment.getComment());
+    }
+
+    @Override
+    public int getItemCount(){
+        return mCommentList.size();
+    }
+
 }
+

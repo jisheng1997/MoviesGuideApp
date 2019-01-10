@@ -26,8 +26,7 @@ public class SearchActivity extends BaseActivity {
     }
 
     protected void initData() {
-        Movie movie1 = new Movie("肖申克的救赎 The Shawshank Redemption", R.drawable.moren);
-        MoviesDetails.add(movie1);
+
     }
 
     protected void initView() {

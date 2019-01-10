@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MovieDatailsActivity extends BaseActivity {
+public class MovieDetailsActivity extends BaseActivity {
 
     private List<Comment> CommentList = new ArrayList<>();
     private RecyclerView recyclerView;
@@ -33,6 +33,7 @@ public class MovieDatailsActivity extends BaseActivity {
         Bundle bundle = this.getIntent().getExtras();
         curMovie = (Movie)bundle.getSerializable("Movie");
         movieName.setText(curMovie.getName());
+        movieImage.setImageResource(curMovie.getMovie_pic());
         Comment comment1 = new Comment("1","good");
         CommentList.add(comment1);
         Comment comment2 = new Comment("1","good");

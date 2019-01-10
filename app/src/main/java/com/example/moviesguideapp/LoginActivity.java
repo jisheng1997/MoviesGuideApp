@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ public class LoginActivity extends BaseActivity {
     private ImageView imageView;
     private TextView textView;
     private LinearLayout linearLayout;
+    private Button loginBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +29,7 @@ public class LoginActivity extends BaseActivity {
         imageView = findViewById(R.id.back);
         textView = findViewById(R.id.loginTo_register);
         linearLayout = findViewById(R.id.login_view);
-
+        loginBtn = findViewById(R.id.login_btn);
     }
 
     @Override
@@ -40,6 +42,7 @@ public class LoginActivity extends BaseActivity {
         imageView.setOnClickListener(this);
         textView.setOnClickListener(this);
         linearLayout.setOnClickListener(this);
+        loginBtn.setOnClickListener(this);
     }
 
     @Override
@@ -51,8 +54,13 @@ public class LoginActivity extends BaseActivity {
             case R.id.loginTo_register:
                 openActivityAndCloseThis(RegisterActivity.class);
                 overridePendingTransition(R.anim.slide_out_to_left,R.anim.slide_in_from_right);
+                break;
             case R.id.login_view:
                 hideSoftInput(linearLayout.getWindowToken());
+                break;
+            case R.id.login_btn:
+                openActivityAndCloseThis(MainLoginActivity.class);
+                break;
             default:
                 break;
         }

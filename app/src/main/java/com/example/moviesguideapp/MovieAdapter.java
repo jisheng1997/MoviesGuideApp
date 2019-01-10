@@ -45,7 +45,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                 Movie movie = mMovieList.get(position);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("Movie", movie);
-                Intent intent = new Intent(mActivity, MovieDatailsActivity.class);
+                Intent intent = new Intent(mActivity, MovieDetailsActivity.class);
                 intent.putExtras(bundle);
                 mActivity.startActivity(intent);
             }
@@ -56,7 +56,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(MovieAdapter.ViewHolder holder, int position) {
         Movie movie = mMovieList.get(position);
-        holder.MovieImage.setImageResource(movie.getImageId());
+        holder.MovieImage.setImageResource(movie.getMovie_pic());
         holder.MovieName.setText(movie.getName());
     }
 

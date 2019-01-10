@@ -20,21 +20,27 @@
             android:id="@+id/main_login_title_ImageView"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="35dp"
             android:src="@drawable/moren" />
 
         <TextView
             android:id="@+id/main_login_title_TextView"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_marginStart="15dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="35dp"
             android:text="@string/defaultName"
             android:textColor="@color/White"
             android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/searchView"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/search" />
 
     </android.support.v7.widget.Toolbar>
 

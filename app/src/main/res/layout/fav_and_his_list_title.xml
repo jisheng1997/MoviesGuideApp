@@ -21,15 +21,4 @@
         android:layout_gravity="center_vertical"
         android:src="@drawable/back"
         />
-
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_marginLeft="15dp"
-        android:layout_marginStart="15dp"
-        android:layout_gravity="center_vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:iconifiedByDefault="false"
-        android:queryHint="search"
-        />
 </LinearLayout>
