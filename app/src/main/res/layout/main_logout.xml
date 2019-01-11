@@ -17,8 +17,6 @@
             android:layout_height="match_parent"
             android:background="#ffffff">
 
-            <include layout="@layout/main_login_title" />
-
             <LinearLayout
                 android:id="@+id/title"
                 android:layout_width="match_parent"
