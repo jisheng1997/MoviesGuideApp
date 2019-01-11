@@ -1,3 +1,10 @@
+/**
+ * projectName:doubanjiang
+ * packageName:com.example.moviesguideapp
+ * fileName:MainLoginActivity
+ * date:2019/1/10 15:19
+ */
+
 package com.example.moviesguideapp;
 
 import android.graphics.Color;
@@ -15,9 +22,14 @@ import android.view.WindowManager;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 
+/**
+ * version:1.12
+ * author:@jisheng
+ * date:2019/1/10 15:19
+ * className:MainLoginActivity
+ */
 
 public class MainLoginActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
 
@@ -43,7 +55,10 @@ public class MainLoginActivity extends BaseActivity implements ViewPager.OnPageC
     private HorizontalScrollView horizontalScrollView;
 
 
-
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +68,9 @@ public class MainLoginActivity extends BaseActivity implements ViewPager.OnPageC
         myviewpager.setAdapter(adapter);
     }
 
+    /**
+     *
+     */
     @Override
     protected void initData() {
         Movie movie1 = new Movie("Recommand", R.drawable.m01);
@@ -75,6 +93,9 @@ public class MainLoginActivity extends BaseActivity implements ViewPager.OnPageC
         actionFragment.setArguments(bundle);
     }
 
+    /**
+     *
+     */
     @Override
     protected void initView() {
         setContentView(R.layout.main_login);
@@ -96,6 +117,9 @@ public class MainLoginActivity extends BaseActivity implements ViewPager.OnPageC
 
     }
 
+    /**
+     *
+     */
     @Override
     protected void initListener() {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {

@@ -1,3 +1,9 @@
+/**
+ * project name:doubanjiang
+ * packageName:com.example.moviesguideapp
+ * fileName:MovieAdapter
+ * data:2019/1/10 15:19
+ */
 package com.example.moviesguideapp;
 
 import android.app.Activity;

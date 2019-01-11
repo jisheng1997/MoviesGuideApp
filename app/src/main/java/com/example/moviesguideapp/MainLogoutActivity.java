@@ -1,3 +1,10 @@
+/**
+ * project name:doubanjiang
+ * packageName:com.example.moviesguideapp
+ * fileName:MainLogoutActivity
+ * data:2019/1/10 15:19
+ */
+
 package com.example.moviesguideapp;
 
 import android.graphics.Color;
@@ -16,7 +23,6 @@ import android.view.WindowManager;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.BufferedReader;
@@ -114,7 +120,7 @@ public class MainLogoutActivity extends BaseActivity implements ViewPager.OnPage
                 switch (menuItem.getItemId()) {
                     case R.id.menu_item_register_login:
                         openActivity(LoginActivity.class);
-                        overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
+                        overridePendingTransition(R.anim.push_in_from_right, R.anim.push_out_to_left);
                         mDrawerLayout.closeDrawers();
                         break;
                 }

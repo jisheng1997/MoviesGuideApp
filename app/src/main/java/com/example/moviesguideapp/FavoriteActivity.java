@@ -1,3 +1,10 @@
+/**
+ * project name:doubanjiang
+ * packageName:com.example.moviesguideapp
+ * fileName:FavoriteActivity
+ * data:2019/1/10 15:19
+ */
+
 package com.example.moviesguideapp;
 
 import android.os.Bundle;
@@ -45,7 +52,7 @@ public class FavoriteActivity extends BaseActivity {
         switch (view.getId()){
             case R.id.back:
                 onBack();
-                overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right);
+                overridePendingTransition(R.anim.push_in_from_left, R.anim.push_out_to_right);
                 break;
             default:
                 break;

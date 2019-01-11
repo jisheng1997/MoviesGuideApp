@@ -1,3 +1,10 @@
+/**
+ * project name:doubanjiang
+ * packageName:com.example.moviesguideapp
+ * fileName:RegisterActivity
+ * data:2019/1/10 15:19
+ */
+
 package com.example.moviesguideapp;
 
 import android.content.Context;
@@ -49,10 +56,11 @@ public class RegisterActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.back:
                 onBack();
+                overridePendingTransition(R.anim.push_in_from_left,R.anim.push_out_to_right);
                 break;
             case R.id.registerTo_login:
                 openActivityAndCloseThis(LoginActivity.class);
-                overridePendingTransition(R.anim.slide_out_to_right,R.anim.slide_in_from_left);
+                overridePendingTransition(R.anim.push_in_from_left,R.anim.push_out_to_right);
                 break;
             case R.id.register_view:
                 hideSoftInput(linearLayout.getWindowToken());
