@@ -17,6 +17,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_gravity="center_vertical"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="20dp"
         android:src="@drawable/back" />
@@ -26,6 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
         android:text="Login/Register" />

@@ -82,4 +82,6 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
     }
+
+
 }

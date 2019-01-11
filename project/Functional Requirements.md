@@ -18,6 +18,6 @@ See 1.4.6 to get the detailed introduction of the comment function.
 * 1.4.8 History Lists
 	* The app will show the movies the user have browsed in our app. It will be provided in a list.
 * 1.4.9 Sort movies
-	* The user can sort the movie by several ways in the movie lists. It can be sorted according to rates of two websites, movie name, director, staring and years.<br>
+	* The user can sort the movie by several ways in the movie lists. It can be sorted according to rates of two websites, movie name, director, staring and year.<br>
 	
 ### [返回README](https://github.com/jisheng1997/MoviesGuideApp/blob/master/README.md)

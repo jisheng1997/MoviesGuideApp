@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Fucking android</string>
+    <string name="app_name">Dou Ban Jiang</string>
     <string name="defaultName">zoslen</string>
     <string name="menu_favorite">Your Watchlist</string>
     <string name="menu_history">Your History</string>
@@ -7,4 +7,7 @@
     <string name="password_hint">please type in your password</string>
     <string name="confirm_password_hint">please confirm your password</string>
     <string name="cancel">cancel</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

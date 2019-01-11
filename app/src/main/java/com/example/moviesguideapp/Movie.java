@@ -10,7 +10,7 @@ public class Movie implements Serializable {
     private String name;
     private String director;
     private String staring;
-    private int years;
+    private int year;
     private String description;
     private float rating_douban;
     private float rating_IMDB;
@@ -22,14 +22,14 @@ public class Movie implements Serializable {
 
     Movie(){}
 
-    public Movie(int movieId, int imageId, String movieType, String name, String directorName, String staring, int years, String description, float db_Rates, float imdb_Rates){
+    public Movie(int movieId, int imageId, String movieType, String name, String directorName, String staring, int year, String description, float db_Rates, float imdb_Rates){
         this.id_movie = movieId;
         this.movie_pic = imageId;
         this.movie_type = movieType;
         this.name = name;
         this.director = directorName;
         this.staring = staring;
-        this.years = years;
+        this.year = year;
         this.description =description;
         this.rating_douban = db_Rates;
         this.rating_IMDB = imdb_Rates;
@@ -55,12 +55,52 @@ public class Movie implements Serializable {
         return director;
     }
 
+    public void setId_movie(int id_movie) {
+        this.id_movie = id_movie;
+    }
+
+    public void setMovie_pic(int movie_pic) {
+        this.movie_pic = movie_pic;
+    }
+
+    public void setMovie_type(String movie_type) {
+        this.movie_type = movie_type;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public void setStaring(String staring) {
+        this.staring = staring;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setRating_douban(float rating_douban) {
+        this.rating_douban = rating_douban;
+    }
+
+    public void setRating_IMDB(float rating_IMDB) {
+        this.rating_IMDB = rating_IMDB;
+    }
+
     public String getStaring() {
         return staring;
     }
 
-    public int getYears() {
-        return years;
+    public int getYear() {
+        return year;
     }
 
     public String getDescription() {

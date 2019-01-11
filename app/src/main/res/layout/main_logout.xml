@@ -19,44 +19,143 @@
 
             <include layout="@layout/main_login_title" />
 
-            <!--<LinearLayout-->
-                <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
-                <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-                <!--android:id="@+id/genre_movies"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:background="@color/White"-->
-                <!--android:gravity="top"-->
-                <!--android:orientation="horizontal"-->
-                <!--app:layout_constraintHorizontal_bias="0.0"-->
-                <!--app:layout_constraintTop_toBottomOf="@+id/title"-->
-                <!--app:layout_constraintBottom_toTopOf="@+id/listing_movies"-->
-                <!--app:layout_constraintHeight_percent="0.05">-->
-
-                <!--<android.support.v7.widget.RecyclerView-->
-                    <!--android:id="@+id/gerne_RecyclerView"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_width="match_parent" />-->
-            <!--</LinearLayout>-->
-
-
             <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/listing_movies"
+                android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:background="@color/White"
+                android:background="@color/Blue"
+                android:gravity="top"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/main"
+                app:layout_constraintHeight_percent="0.1">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/main_login_title_Toorbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/main_login_title_ImageView"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="30dp"
+                        android:src="@drawable/moren" />
+
+                    <TextView
+                        android:id="@+id/main_login_title_TextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="35dp"
+                        android:text="@string/defaultName"
+                        android:textColor="@color/White"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/searchView"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="35dp"
+                        android:src="@drawable/search" />
+
+                </android.support.v7.widget.Toolbar>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/main"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:gravity="bottom"
                 android:orientation="vertical"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintTop_toBottomOf="@+id/title"
-                app:layout_constraintHeight_percent="0.85">
+                app:layout_constraintHeight_percent="0.9"
+                app:layout_constraintTop_toBottomOf="@+id/title">
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/movies_list_RecyclerView"
-                    android:layout_height="match_parent"
-                    android:layout_width="match_parent" />
+                <HorizontalScrollView
+                    android:id="@+id/main_login_HorizontalScrollView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:id="@+id/movie_sort"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/White"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:id="@+id/tv_first"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Recommand"
+                            android:textColor="@color/Black"
+                            android:textSize="22sp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_second"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Action"
+                            android:textColor="@color/Black"
+                            android:textSize="22sp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_third"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Adventrue"
+                            android:textColor="@color/Black"
+                            android:textSize="22sp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_fourth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Sci-fi"
+                            android:textColor="@color/Black"
+                            android:textSize="22sp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_fifth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Drama"
+                            android:textColor="@color/Black"
+                            android:textSize="22sp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_sixth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Romance"
+                            android:textColor="@color/Black"
+                            android:textSize="22sp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"/>
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/myviewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="9" />
             </LinearLayout>
 
         </android.support.constraint.ConstraintLayout>
