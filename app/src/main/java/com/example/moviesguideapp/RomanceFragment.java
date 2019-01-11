@@ -1,8 +1,8 @@
 /**
- * project name:doubanjiang
+ * projectName:doubanjiang
  * packageName:com.example.moviesguideapp
  * fileName:RomanceFragment
- * data:2019/1/10 15:19
+ * date:2019/1/10 15:19
  */
 
 package com.example.moviesguideapp;
@@ -20,6 +20,13 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * version:1.12
+ * author:
+ * className:RomanceFragment
+ * date:2019/1/10 15:19
+ */
 
 public class RomanceFragment extends Fragment {
 

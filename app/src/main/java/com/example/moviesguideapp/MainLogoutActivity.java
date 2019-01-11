@@ -1,8 +1,8 @@
 /**
- * project name:doubanjiang
+ * projectName:doubanjiang
  * packageName:com.example.moviesguideapp
  * fileName:MainLogoutActivity
- * data:2019/1/10 15:19
+ * date:2019/1/10 15:19
  */
 
 package com.example.moviesguideapp;
@@ -32,7 +32,12 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-
+/**
+ * version:1.12
+ * author:
+ * className:MainLogoutActivity
+ * date:2019/1/10 15:19
+ */
 public class MainLogoutActivity extends BaseActivity implements ViewPager.OnPageChangeListener{
 
     private ViewPager myviewpager;

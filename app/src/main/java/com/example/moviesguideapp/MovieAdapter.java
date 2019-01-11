@@ -1,8 +1,8 @@
 /**
- * project name:doubanjiang
+ * projectName:doubanjiang
  * packageName:com.example.moviesguideapp
  * fileName:MovieAdapter
- * data:2019/1/10 15:19
+ * date:2019/1/10 15:19
  */
 package com.example.moviesguideapp;
 
@@ -17,6 +17,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
+
+/**
+ * version:1.12
+ * author:
+ * className:MovieAdapter
+ * date:2019/1/10 15:19
+ */
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
     private List<Movie> mMovieList;

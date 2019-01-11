@@ -1,8 +1,8 @@
 /**
- * project name:doubanjiang
+ * projectName:doubanjiang
  * packageName:com.example.moviesguideapp
  * fileName:AdventureFragment
- * data:2019/1/10 15:19
+ * date:2019/1/10 15:19
  */
 
 package com.example.moviesguideapp;
@@ -18,6 +18,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+
+/**
+ * version:1.12
+ * author:
+ * className:AdventureFragment
+ * date:2019/1/10 15:19
+ */
 
 public class AdventureFragment extends Fragment {
 

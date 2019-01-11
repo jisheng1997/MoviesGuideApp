@@ -1,8 +1,8 @@
 /**
- * project name:doubanjiang
+ * projectName:doubanjiang
  * packageName:com.example.moviesguideapp
  * fileName:FavoriteActivity
- * data:2019/1/10 15:19
+ * date:2019/1/10 15:19
  */
 
 package com.example.moviesguideapp;
@@ -13,6 +13,13 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.ImageView;
 import java.util.ArrayList;
+
+/**
+ * version:1.12
+ * author:
+ * className:FavoriteActivity
+ * date:2019/1/10 15:19
+ */
 
 public class FavoriteActivity extends BaseActivity {
 

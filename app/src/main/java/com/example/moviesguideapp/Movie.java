@@ -1,13 +1,20 @@
 /**
- * project name:doubanjiang
+ * projectName:doubanjiang
  * packageName:com.example.moviesguideapp
  * fileName:Movie
- * data:2019/1/10 15:19
+ * date:2019/1/10 15:19
  */
 
 package com.example.moviesguideapp;
 
 import java.io.Serializable;
+
+/**
+ * version:1.12
+ * author:
+ * className:Movie
+ * date:2019/1/10 15:19
+ */
 
 public class Movie implements Serializable {
 

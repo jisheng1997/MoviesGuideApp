@@ -1,11 +1,18 @@
 /**
- * project name:doubanjiang
+ * projectName:doubanjiang
  * packageName:com.example.moviesguideapp
  * fileName:Comment
- * data:2019/1/10 15:19
+ * date:2019/1/10 15:19
  */
 
 package com.example.moviesguideapp;
+
+/**
+ * version:1.12
+ * author:
+ * className:Comment
+ * date:2019/1/10 15:19
+ */
 
 public class Comment {
     private String username;

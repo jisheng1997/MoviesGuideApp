@@ -1,8 +1,8 @@
 /**
- * project name:doubanjiang
+ * projectName:doubanjiang
  * packageName:com.example.moviesguideapp
  * fileName:BaseActivity
- * data:2019/1/10 15:19
+ * date:2019/1/10 15:19
  */
 
 package com.example.moviesguideapp;
@@ -16,6 +16,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 import java.util.Stack;
+
+/**
+ * version:1.12
+ * author:
+ * className:BaseActivity
+ * date:2019/1/10 15:19
+ */
 
 public class BaseActivity extends AppCompatActivity implements View.OnClickListener {
 

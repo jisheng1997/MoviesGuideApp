@@ -1,8 +1,8 @@
 /**
- * project name:doubanjiang
+ * projectName:doubanjiang
  * packageName:com.example.moviesguideapp
  * fileName:CommentsAdapter
- * data:2019/1/10 15:19
+ * date:2019/1/10 15:19
  */
 
 package com.example.moviesguideapp;
@@ -15,6 +15,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
+
+/**
+ * version:1.12
+ * author:
+ * className:CommentsAdapter
+ * date:2019/1/10 15:19
+ */
 
 public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHolder>{
     private List<Comment> mCommentList;

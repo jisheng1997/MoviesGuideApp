@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 /**
  * version:1.12
- * author:@jisheng
+ * author:
  * date:2019/1/10 15:19
  * className:MainLoginActivity
  */
