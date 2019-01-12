@@ -72,7 +72,7 @@
 * 1.5 非功能性需求(Nonfunctional requirements)
     * [Nonfunctional Requirements](https://github.com/jisheng1997/MoviesGuideApp/blob/master/project/Nonfunctional%20Requirements.md)
 * 1.6 流程图 Ver1.1 <br>
-![流程图](https://github.com/jisheng1997/MoviesGuideApp/blob/master/project/project%20Ver%201.1.png) <br>
+![流程图](https://github.com/jisheng1997/MoviesGuideApp/blob/master/project/project%20Ver1.2.png) <br>
 * 1.7 项目成员(排名不分先后)
     * [季晟](https://github.com/jisheng1997)      
     * [陶李玮](https://github.com/zoslen)      
