@@ -11,11 +11,23 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Stack;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+import static android.telecom.DisconnectCause.ERROR;
+import static android.telephony.NetworkScan.SUCCESS;
 
 /**
  * version:1.12
@@ -23,10 +35,9 @@ import java.util.Stack;
  * className:BaseActivity
  * date:2019/1/10 15:19
  */
-
 public class BaseActivity extends AppCompatActivity implements View.OnClickListener {
-
     private static Stack<Activity> listActivity = new Stack<Activity>();
+    private String response = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,23 +49,42 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    /**
+     * initialize the views
+     */
     protected void initView() {
 
     }
 
+    /**
+     * initialize the data
+     */
     protected void initData() {
 
     }
 
+    /**
+     * initialize the listeners
+     */
     protected void initListener() {
 
     }
 
+    /**
+     * override the onClick function
+     *
+     * @param view
+     */
     @Override
     public void onClick(View view) {
-
     }
 
+    /**
+     * Open activity with bundle as data
+     *
+     * @param targetActivityClass the target activity class
+     * @param bundle              the bundle
+     */
     public void openActivity(Class<?> targetActivityClass, Bundle bundle) {
         Intent intent = new Intent(this, targetActivityClass);
         if (bundle != null) {
@@ -63,29 +93,110 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
     }
 
+    /**
+     * Open activity.
+     *
+     * @param targetActivityClass the target activity class
+     */
     public void openActivity(Class<?> targetActivityClass) {
         openActivity(targetActivityClass, null);
     }
 
+    /**
+     * Open activity and close last activity
+     *
+     * @param targetActivityClass the target activity class
+     */
     public void openActivityAndCloseThis(Class<?> targetActivityClass) {
         openActivity(targetActivityClass);
         this.finish();
     }
 
+    /**
+     * get the data from the server
+     * @param request
+     */
+    public void sendRequest(final String request, final Handler handler) {
+        new Thread() {
+            public void run() {
+                try {
+                    String path = "http://172.29.4.41:8081/Android_server/movie_operation.php";
+                    URL url = new URL(path);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("POST");
+                    conn.setRequestProperty("User-Agent", "Mozilla/5.0(compatible;MSIE 9.0;Windows NT 6.1;Trident/5.0)");
+                    conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                    conn.setRequestProperty("Content-Length", request.length() + "");
+                    conn.setDoOutput(true);
+                    byte[] bytes = request.getBytes();
+                    conn.getOutputStream().write(bytes);
+                    if(conn.getResponseCode() == 200){
+                        InputStream is = conn.getInputStream();
+                        response = parseInfo(is);
+                        Message mas= Message.obtain();
+                        mas.what = SUCCESS;
+                        mas.obj = response;
+                        handler.sendMessage(mas);
 
+                    }else{
+                        Message mas = Message.obtain();
+                        mas.what = ERROR;
+                        handler.sendMessage(mas);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
+
+    protected String parseInfo(InputStream in) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(in));
+        StringBuilder sb = new StringBuilder();
+        String line = null;
+        while ((line = br.readLine()) != null) {
+            sb.append(line + "\n");
+        }
+        return sb.toString();
+    }
+
+    /*
+     *  parsing String(response) with JSONObject
+     */
+    protected void parseJSONWithJSON(String jsonData) {
+
+    }
+
+    /**
+     * Show short toast.
+     *
+     * @param text the text
+     */
     public void showShortToast(String text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Show long toast.
+     *
+     * @param text the text
+     */
     public void showLongToast(String text) {
         Toast.makeText(this, text, Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * back to the last activity
+     */
     public void onBack() {
         finish();
     }
 
-    public void hideBar(){
+    /**
+     * Hide status bar and navigation bar
+     */
+    public void hideBar() {
         if (Build.VERSION.SDK_INT >= 21) {
             View decorView = getWindow().getDecorView();
             int option = View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
@@ -96,6 +207,4 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
     }
-
-
 }

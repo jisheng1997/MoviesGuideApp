@@ -39,7 +39,9 @@ public class FavoriteActivity extends BaseActivity {
     @Override
     protected void initData(){
         Bundle bundle = this.getIntent().getExtras();
-        MovieList = (ArrayList<Movie>)bundle.getSerializable("RecommandMoviesList");
+        if(bundle != null) {
+            MovieList = (ArrayList<Movie>) bundle.getSerializable("moviesList");
+        }
     }
 
     @Override

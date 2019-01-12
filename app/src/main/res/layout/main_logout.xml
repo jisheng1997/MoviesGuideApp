@@ -145,6 +145,26 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"/>
 
+                        <TextView
+                            android:id="@+id/tv_eighth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Crime"
+                            android:textColor="@color/Black"
+                            android:textSize="22sp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_ninth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Thriller"
+                            android:textColor="@color/Black"
+                            android:textSize="22sp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"/>
+
                     </LinearLayout>
 
                 </HorizontalScrollView>
@@ -160,6 +180,7 @@
     </FrameLayout>
 
     <android.support.design.widget.NavigationView
+        app:theme="@style/ItemHeight"
         android:id="@+id/main_login_navView"
         android:layout_width="250dp"
         android:layout_height="match_parent"

@@ -16,87 +16,114 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+
 import java.util.ArrayList;
+
 /**
  * version:1.12
  * author:
  * className:MainLogoutActivity
  * date:2019/1/10 15:19
  */
-public class MainLogoutActivity extends BaseActivity implements ViewPager.OnPageChangeListener{
+public class MainLogoutActivity extends BaseActivity{
+
+    /**
+     * The constant TAG.
+     */
+    public static final String TAG = "MainLoginActivity";
+
+    //nine fragment for display movieList
+    private MyFragment RecommandFragment = new MyFragment();
+    private MyFragment ActionFragment = new MyFragment();
+    private MyFragment AdventureFragment = new MyFragment();
+    private MyFragment ScifiFragment = new MyFragment();
+    private MyFragment DramaFragment = new MyFragment();
+    private MyFragment RomanceFragment = new MyFragment();
+    private MyFragment ComedyFragment = new MyFragment();
+    private MyFragment CrimeFragment = new MyFragment();
+    private MyFragment ThrillerFragment = new MyFragment();
+
+    private ArrayList<Fragment> fragments = new ArrayList<Fragment>();
+    private ArrayList<Movie> moviesList = new ArrayList<>();
+    private Bundle bundle = new Bundle();
+    private String response = null;
 
     private ViewPager myviewpager;
-    private ArrayList<Movie> RecommandMovies = new ArrayList<>();
-    private ArrayList<Movie> ActionMovies = new ArrayList<>();
-    private ArrayList<Movie> moviesList = new ArrayList<>();
     private DrawerLayout mDrawerLayout;
-    private Bundle bundle = new Bundle();
-    private ImageView back;
-    private NavigationView navigationView;
-    public static final String TAG = "MainLoginActivity";
-    private String response = null;
-    private ImageView searchView;
-    private ArrayList<Fragment> fragments = new ArrayList<Fragment>();
-    private RecommandFragment recommandFragment = new RecommandFragment();
-    private ActionFragment actionFragment = new ActionFragment();
+
     private TextView tv_first;
     private TextView tv_second;
     private TextView tv_third;
     private TextView tv_fourth;
     private TextView tv_fifth;
     private TextView tv_sixth;
+    private TextView tv_seventh;
+    private TextView tv_eighth;
+    private TextView tv_ninth;
+    private ImageView back;
+    private ImageView searchView;
+    private NavigationView navigationView;
     private HorizontalScrollView horizontalScrollView;
 
+    /**
+     * onCreate function
+     *
+     * @param savedInstanceState savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        while(response==null){}
 //        parseJSONWithJSON(response);
-        fragments.add(recommandFragment);
-        fragments.add(actionFragment);
+        initFragment();
         MyFragmentPagerAdapter adapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), fragments);
         myviewpager.setAdapter(adapter);
 
     }
 
+    /**
+     * override iniData function
+     * initialize the data
+     */
     @Override
     protected void initData() {
-        receive();
-        Movie movie1 = new Movie("Recommand", R.drawable.m01);
-        RecommandMovies.add(movie1);
-        RecommandMovies.add(movie1);
-        RecommandMovies.add(movie1);
-        RecommandMovies.add(movie1);
-        RecommandMovies.add(movie1);
-        RecommandMovies.add(movie1);
-        bundle.putSerializable("RecommandMoviesList", RecommandMovies);
-        recommandFragment.setArguments(bundle);
-        Movie movie2 = new Movie("Action", R.drawable.m01);
-        ActionMovies.add(movie2);
-        ActionMovies.add(movie2);
-        ActionMovies.add(movie2);
-        ActionMovies.add(movie2);
-        ActionMovies.add(movie2);
-        ActionMovies.add(movie2);
-        bundle.putSerializable("ActionMoviesList", ActionMovies);
-        actionFragment.setArguments(bundle);
+//        receive();
+        /*
+        test
+         */
+        Movie movie = new Movie("test", R.drawable.m01);
+        moviesList.add(movie);
+        moviesList.add(movie);
+        moviesList.add(movie);
+        bundle.putSerializable("moviesList", moviesList);
+        RecommandFragment.setArguments(bundle);
     }
 
+    /**
+     * initialize the Fragments
+     */
+    private void initFragment() {
+        fragments.add(RecommandFragment);
+        fragments.add(ActionFragment);
+        fragments.add(AdventureFragment);
+        fragments.add(ScifiFragment);
+        fragments.add(DramaFragment);
+        fragments.add(RomanceFragment);
+        fragments.add(ComedyFragment);
+        fragments.add(CrimeFragment);
+        fragments.add(ThrillerFragment);
+    }
+
+    /**
+     * override the iniView function
+     * initialize the views
+     */
     @Override
     protected void initView() {
         setContentView(R.layout.main_logout);
@@ -105,6 +132,7 @@ public class MainLogoutActivity extends BaseActivity implements ViewPager.OnPage
         back = findViewById(R.id.main_login_title_ImageView);
         navigationView = findViewById(R.id.main_login_navView);
         searchView = findViewById(R.id.searchView);
+        horizontalScrollView = findViewById(R.id.main_login_HorizontalScrollView);
 
         tv_first = findViewById(R.id.tv_first);
         tv_second = findViewById(R.id.tv_second);
@@ -112,13 +140,18 @@ public class MainLogoutActivity extends BaseActivity implements ViewPager.OnPage
         tv_fourth = findViewById(R.id.tv_fourth);
         tv_fifth = findViewById(R.id.tv_fifth);
         tv_sixth = findViewById(R.id.tv_sixth);
-        horizontalScrollView = findViewById(R.id.main_login_HorizontalScrollView);
+        tv_seventh = findViewById(R.id.tv_seventh);
+        tv_eighth = findViewById(R.id.tv_eighth);
+        tv_ninth = findViewById(R.id.tv_ninth);
+        TextView textArray[] = new TextView[]{tv_first, tv_second, tv_third, tv_fourth, tv_fifth, tv_sixth, tv_seventh, tv_eighth, tv_ninth};
     }
 
+    /**
+     * override the initListener function
+     * initialize the listeners
+     */
     @Override
     protected void initListener() {
-        back.setOnClickListener(this);
-        searchView.setOnClickListener(this);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -130,161 +163,139 @@ public class MainLogoutActivity extends BaseActivity implements ViewPager.OnPage
                         break;
                 }
                 return false;
+
             }
         });
 
+        myviewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                resetTextView();
+                changeTextView(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int arg0) {
+
+            }
+
+            @Override
+            public void onPageScrolled(int arg0, float arg1, int arg2) {
+            }
+        });
+        back.setOnClickListener(this);
+        searchView.setOnClickListener(this);
+        tv_first.setOnClickListener(this);
+        tv_second.setOnClickListener(this);
+        tv_third.setOnClickListener(this);
+        tv_fourth.setOnClickListener(this);
+        tv_fifth.setOnClickListener(this);
+        tv_sixth.setOnClickListener(this);
+        tv_seventh.setOnClickListener(this);
+        tv_eighth.setOnClickListener(this);
+        tv_ninth.setOnClickListener(this);
     }
 
+    /**
+     * override the onClick function
+     *
+     * @param view
+     */
     @Override
     public void onClick(View view) {
+        resetTextView();
         switch (view.getId()) {
             case R.id.main_login_title_ImageView:
                 mDrawerLayout.openDrawer(GravityCompat.START);
+                overridePendingTransition(R.anim.push_in_from_top, R.anim.push_out_to_bottom);
                 break;
             case R.id.searchView:
                 openActivity(SearchActivity.class);
+                break;
             case R.id.tv_first:
-                changeTextView(tv_first);
+                changeTextView(0);
                 myviewpager.setCurrentItem(0);
-                showLongToast("Recommand");
                 break;
             case R.id.tv_second:
-                changeTextView(tv_second);
+                changeTextView(1);
                 myviewpager.setCurrentItem(1);
-                showLongToast("Action");
                 break;
             case R.id.tv_third:
-                changeTextView(tv_third);
+                changeTextView(2);
                 myviewpager.setCurrentItem(2);
-                showLongToast("Adventure");
                 break;
             case R.id.tv_fourth:
-                changeTextView(tv_fourth);
+                changeTextView(3);
                 myviewpager.setCurrentItem(3);
-                showLongToast("Sci-fi");
                 break;
             case R.id.tv_fifth:
-                changeTextView(tv_fifth);
+                changeTextView(4);
                 myviewpager.setCurrentItem(4);
-                showLongToast("Drama");
                 break;
             case R.id.tv_sixth:
-                changeTextView(tv_sixth);
+                changeTextView(5);
                 myviewpager.setCurrentItem(5);
-                showLongToast("Romance");
+                break;
+            case R.id.tv_seventh:
+                changeTextView(6);
+                myviewpager.setCurrentItem(6);
+                break;
+            case R.id.tv_eighth:
+                changeTextView(7);
+                myviewpager.setCurrentItem(7);
+                break;
+            case R.id.tv_ninth:
+                changeTextView(8);
+                myviewpager.setCurrentItem(8);
                 break;
             default:
                 break;
         }
     }
-    /*
-     *  getting data from server
+
+    @Override
+    protected void parseJSONWithJSON(String jsonData) {
+
+    }
+
+    /**
+     * Reset all textviews before changes
      */
-
-    private void receive() {
-        new Thread(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        response = executeHttpGet();
-                        Log.d(TAG, "run&onCreate: " + response);
-                    }
-                }
-        ).start();
+    public void resetTextView() {
+        tv_first.getPaint().setFlags(0);
+        tv_first.setTextColor(Color.parseColor("#000000"));
+        tv_second.getPaint().setFlags(0);
+        tv_second.setTextColor(Color.parseColor("#000000"));
+        tv_third.getPaint().setFlags(0);
+        tv_third.setTextColor(Color.parseColor("#000000"));
+        tv_fourth.getPaint().setFlags(0);
+        tv_fourth.setTextColor(Color.parseColor("#000000"));
+        tv_fifth.getPaint().setFlags(0);
+        tv_fifth.setTextColor(Color.parseColor("#000000"));
+        tv_sixth.getPaint().setFlags(0);
+        tv_sixth.setTextColor(Color.parseColor("#000000"));
+        tv_seventh.getPaint().setFlags(0);
+        tv_seventh.setTextColor(Color.parseColor("#000000"));
+        tv_eighth.getPaint().setFlags(0);
+        tv_eighth.setTextColor(Color.parseColor("#000000"));
+        tv_ninth.getPaint().setFlags(0);
+        tv_ninth.setTextColor(Color.parseColor("#000000"));
     }
 
-    private String executeHttpGet() {
-
-        HttpURLConnection con=null;
-        InputStream in=null;
-        String path="http://172.29.4.41:8081/Android_server/get_all_movie.php";
-        try {
-            con = (HttpURLConnection) new URL(path).openConnection();
-            con.setRequestMethod("GET");
-            con.setConnectTimeout(5000);
-            con.setReadTimeout(5000);
-            con.setDoInput(true);
-            if(con.getResponseCode()==200){
-                Log.d(TAG, "executeHttpGet&onCreate: successful");
-                in=con.getInputStream();
-                //Log.d(TAG, "executeHttpGet&onCreate:"+parseInfo(in));
-                return parseInfo(in);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Log.d(TAG, "executeHttpGet&onCreate: wrong way");
-        return null;
-    }
-
-    private String parseInfo(InputStream in) throws IOException {
-        BufferedReader  br=new BufferedReader(new InputStreamReader(in));
-        StringBuilder sb=new StringBuilder();
-        String line=null;
-        while ((line=br.readLine())!=null){
-            sb.append(line+"\n");
-        }
-        Log.i(TAG, "parseInfo: sb:"+sb.toString());
-        return sb.toString();
-    }
-
-    /*
-     *  parsing String(response) with JSONObject
+    /**
+     * Change text view which user click on
+     *
+     * @param position
      */
-    private void parseJSONWithJSON(String jsonData) {
-        try{
-            Log.d(TAG, "parseJSONWithJSON&onCreate:"+jsonData);
-            JSONArray jsonArray = new JSONArray(jsonData);
-            Log.d(TAG, "parseJSONWithJSON&onCreate:"+jsonArray.length());
-            for(int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObeject = jsonArray.getJSONObject(i);
-                Log.d(TAG, "parseJSONWithJSON&onCreate:"+jsonObeject.getString("movie_pic"));
-                moviesList.add(i,new Movie());
-                moviesList.get(i).setName(jsonObeject.getString("name"));
-                moviesList.get(i).setDescription(jsonObeject.getString("description"));
-                moviesList.get(i).setDirector(jsonObeject.getString("director"));
-                moviesList.get(i).setId_movie(Integer.parseInt(jsonObeject.getString("id_movie")));
-                moviesList.get(i).setMovie_pic(this.getResources().getIdentifier(jsonObeject.getString("movie_pic"),"drawable",getPackageName()));
-                moviesList.get(i).setMovie_type(jsonObeject.getString("movie_type"));
-                moviesList.get(i).setRating_douban(Float.parseFloat(jsonObeject.getString("rating_douban")));
-                moviesList.get(i).setRating_IMDB(Float.parseFloat(jsonObeject.getString("rating_IMDB")));
-                moviesList.get(i).setStaring(jsonObeject.getString("staring"));
-                moviesList.get(i).setYear(Integer.parseInt(jsonObeject.getString("year")));
-            }
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
-
-    @Override
-    public void onPageScrollStateChanged(int arg0) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void onPageScrolled(int arg0, float arg1, int arg2) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void onPageSelected(int arg0) {
-        // TODO Auto-generated method stub
-    }
-
-    public void resetTextView(){
-
-    }
-
-    public void changeTextView(TextView textView){
-        textView.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
-        textView.setTextColor(Color.parseColor("#ff0000"));
+    public void changeTextView(int position) {
+        TextView textArray[] = new TextView[]{tv_first, tv_second, tv_third, tv_fourth, tv_fifth, tv_sixth, tv_seventh, tv_eighth, tv_ninth};
+        TextView curTextView = textArray[position];
+        curTextView.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
+        curTextView.setTextColor(Color.parseColor("#00ffff"));
         WindowManager wm1 = this.getWindowManager();
         int screenWidth = wm1.getDefaultDisplay().getWidth();
-        int rb_px = (int)textView.getX() + textView.getWidth() / 2;
+        int rb_px = (int) curTextView.getX() + curTextView.getWidth() / 2;
         horizontalScrollView.scrollTo(rb_px - screenWidth / 2, 0);
     }
+
 }

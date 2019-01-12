@@ -1,11 +1,16 @@
 <resources>
     <string name="app_name">Dou Ban Jiang</string>
     <string name="defaultName">zoslen</string>
-    <string name="menu_favorite">Your Watchlist</string>
-    <string name="menu_history">Your History</string>
+    <string name="menu_favorite"><font color="#454545"><font size="22">Your Watchlist</font></font></string>
+    <string name="menu_history"><font color="#454545"><font size="22">Your History</font></font></string>
+    <string name="menu_comment"><font color="#454545"><font size="22">Your Comment</font></font></string>
+    <string name="menu_help"><font color="#454545"><font size="20">Economical Help</font></font></string>
+    <string name="menu_signout"><font color="#454545"><font size="20">&#x0020;&#x0020;&#x0020;&#x0020;Sign Out</font></font></string>
+    <string name="menu_logAndReg"><font color="#454545"><font size="20">Login/Register</font></font></string>
     <string name="username_hint">please type in your username</string>
     <string name="password_hint">please type in your password</string>
     <string name="confirm_password_hint">please confirm your password</string>
+
     <string name="cancel">cancel</string>
 
     <!-- TODO: Remove or change this placeholder text -->

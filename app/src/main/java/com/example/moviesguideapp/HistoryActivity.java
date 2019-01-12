@@ -38,7 +38,9 @@ public class HistoryActivity extends BaseActivity {
     @Override
     protected void initData(){
         Bundle bundle = this.getIntent().getExtras();
-        MovieList = (ArrayList<Movie>)bundle.getSerializable("ActionMoviesList");
+        if(bundle != null) {
+            MovieList = (ArrayList<Movie>) bundle.getSerializable("moviesList");
+        }
     }
 
     @Override

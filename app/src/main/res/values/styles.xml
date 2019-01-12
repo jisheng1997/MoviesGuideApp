@@ -13,4 +13,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="ItemHeight">
+        <item name="listPreferredItemHeightSmall">75dp</item>
+        <item name="android:typeface">serif</item>
+    </style>
+
 </resources>
