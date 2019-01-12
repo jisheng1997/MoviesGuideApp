@@ -14,4 +14,6 @@
     <color name="DimGray">	#696969</color>
     <color name="Blue">#87CEFF</color>
     <color name="MyGray">#494949</color>
+    <color name="DarkBlue">#104E8B</color>
+    <color name="LightBlue">#1E90FF</color>
 </resources>

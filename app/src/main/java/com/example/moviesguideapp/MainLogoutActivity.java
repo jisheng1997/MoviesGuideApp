@@ -65,8 +65,8 @@ public class MainLogoutActivity extends BaseActivity implements ViewPager.OnPage
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        while(response==null){}
-        parseJSONWithJSON(response);
+//        while(response==null){}
+//        parseJSONWithJSON(response);
         fragments.add(recommandFragment);
         fragments.add(actionFragment);
         MyFragmentPagerAdapter adapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), fragments);
