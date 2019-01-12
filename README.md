@@ -37,8 +37,18 @@
     * (3) 修改了Movie类
     * (4) Mainlogout类新增了数据库连接，读取数据的方法
     * (5) 实现了特定movie至Moviedetails界面的页面切换
-    * (6) 实现了特定movie至Moviedetails界面的传值 <br><br><br>
-    
+    * (6) 实现了特定movie至Moviedetails界面的传值 
+* Ver 1.12 & 1.13 & 1.14 & 1.15 by 季晟/陶李玮/韩馥骏/董天元 2019/1/12 7:13
+    * (1) 将9个fragment合并成一个
+    * (2) BaseActivity新增了请求数据库数据的方法
+    * (3) BaseActivity新增了了数据处理方法(需重写）
+    * (4) 修改了部分页面切换动画
+    * (5) 修改了侧滑菜单，实现了电影类型的切换
+    * (6) 实现了导航栏下划线的监听
+    * (7) 完成了数据库输入
+    * (8) 实现了注册和登陆功能
+    * (9) 修复了部分bug，并献祭了陶李玮十年寿命  <br><br><br>
+
 ## 1.项目总览
 * 1.1 项目介绍（Description)
      * We are about to make a movie guide app which can show the users the information of movies by phone with andriod phone.This software is mainly used to serve the people who look for the movies. Users can find the information of movie by searching the      movie's name from the database. Our software can show the basic information, brief description and comments of movies. Otherwise, Our   software can recommand movies to users by different sorts.What’s more, our software has a clear and simple interface. Users can easily learn how to use it at the first time they are using it.
