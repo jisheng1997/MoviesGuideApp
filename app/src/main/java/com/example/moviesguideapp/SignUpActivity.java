@@ -1,7 +1,7 @@
 /**
  * projectName:doubanjiang
  * packageName:com.example.moviesguideapp
- * fileName:RegisterActivity
+ * fileName:SignUpActivity
  * date:2019/1/10 15:19
  */
 
@@ -25,27 +25,26 @@ import android.widget.Toast;
 /**
  * version:1.12
  * author:
- * className:RegisterActivity
+ * className:SignUpActivity
  * date:2019/1/10 15:19
  */
 
-public class RegisterActivity extends BaseActivity {
-    public static final String TAG="RegisterActivity";
+public class SignUpActivity extends BaseActivity {
+
+    public static final String TAG = "SignUpActivity";
     private ImageView back;
-    private TextView registerTo_login;
+    private TextView loginTo_register;
     private LinearLayout linearLayout;
-    private Button registerBtn;
+    private Button loginBtn;
     private EditText account_EditText;
     private EditText password_EditText;
-    private EditText confirm_password_EditText;
     private String user;
     private String password;
-    private String password_confirm;
-    private String data;
-    private String response;
-
+    private String data = null;
+    private String response = null;
     protected static final int SUCCESS = 1;
     protected static final int ERROR = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,14 +52,13 @@ public class RegisterActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        setContentView(R.layout.register);
+        setContentView(R.layout.signup);
         back = findViewById(R.id.back);
-        registerTo_login = findViewById(R.id.registerTo_login);
-        linearLayout = findViewById(R.id.register_view);
-        registerBtn = findViewById(R.id.register_btn);
+        loginTo_register = findViewById(R.id.signUpTo_signIn);
+        linearLayout = findViewById(R.id.signUp_view);
+        loginBtn = findViewById(R.id.signUp_btn);
         account_EditText = findViewById(R.id.account_EditText);
         password_EditText = findViewById(R.id.password_EditText);
-        confirm_password_EditText = findViewById(R.id.confirm_password_EditText);
     }
 
     @Override
@@ -71,9 +69,9 @@ public class RegisterActivity extends BaseActivity {
     @Override
     protected void initListener() {
         back.setOnClickListener(this);
-        registerTo_login.setOnClickListener(this);
+        loginBtn.setOnClickListener(this);
+        loginTo_register.setOnClickListener(this);
         linearLayout.setOnClickListener(this);
-        registerBtn.setOnClickListener(this);
     }
 
     @Override
@@ -83,58 +81,53 @@ public class RegisterActivity extends BaseActivity {
                 onBack();
                 overridePendingTransition(R.anim.push_in_from_left,R.anim.push_out_to_right);
                 break;
-            case R.id.registerTo_login:
-                openActivityAndCloseThis(LoginActivity.class);
-                overridePendingTransition(R.anim.push_in_from_left,R.anim.push_out_to_right);
+            case R.id.signUpTo_signIn:
+                openActivityAndCloseThis(SignInActivity.class);
+                overridePendingTransition(R.anim.push_in_from_right,R.anim.push_out_to_left);
                 break;
-            case R.id.register_view:
+            case R.id.signUp_view:
                 hideSoftInput(linearLayout.getWindowToken());
                 break;
-            case R.id.register_btn:
-                openActivityAndCloseThis(MainLoginActivity.class);
+            case R.id.signUp_btn:
+                openActivityAndCloseThis(MainSignUpActivity.class);
                 break;
             default:
                 break;
         }
     }
+
     private Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
             switch (msg.what) {
                 case SUCCESS:
-                    Toast.makeText(RegisterActivity.this, (String) msg.obj, Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignUpActivity.this, (String) msg.obj, Toast.LENGTH_LONG).show();
                     break;
                 case ERROR:
-                    Toast.makeText(RegisterActivity.this, "please check your network", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignUpActivity.this, "please check your network", Toast.LENGTH_LONG).show();
                     break;
             }
             return false;
         }
     });
 
+    public void login() {
+        data = "username=" + user + "&password=" + password + "&signup=";
+        user = account_EditText.getText().toString();
+        password = password_EditText.getText().toString();
+
+        if (TextUtils.isEmpty(user) || TextUtils.isEmpty(password)) {
+            Toast.makeText(this, "username and password are not allowed to be empty", Toast.LENGTH_LONG).show();
+            return;
+        }
+        sendRequest(data, handler);
+    }
 
     private void hideSoftInput(IBinder token) {
         if (token != null) {
             InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             manager.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
         }
-    }
-
-    public void register(){
-        data = "username="+user+"&password="+password+"&register=";
-        user = account_EditText.getText().toString();
-        password = password_EditText.getText().toString();
-        password_confirm = confirm_password_EditText.getText().toString();
-        if (TextUtils.isEmpty(user)||TextUtils.isEmpty(password)||TextUtils.isEmpty(password_confirm)){
-            Toast.makeText(this, "username and password are not allowed to be empty", Toast.LENGTH_LONG).show();
-            return;
-        }
-        sendRequest(data,handler);
-    }
-
-    @Override
-    protected void parseJSONWithJSON(String jsonData) {
-
     }
 
 }

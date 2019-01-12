@@ -1,7 +1,7 @@
 /**
  * projectName:doubanjiang
  * packageName:com.example.moviesguideapp
- * fileName:MainLoginActivity
+ * fileName:MainSignOutActivity
  * date:2019/1/10 15:19
  */
 
@@ -25,19 +25,18 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-
 /**
  * version:1.12
  * author:
+ * className:MainSignOutActivity
  * date:2019/1/10 15:19
- * className:MainLoginActivity
  */
-public class MainLoginActivity extends BaseActivity {
+public class MainSignOutActivity extends BaseActivity{
 
     /**
      * The constant TAG.
      */
-    public static final String TAG = "MainLoginActivity";
+    public static final String TAG = "MainSignUpActivity";
 
     //nine fragment for display movieList
     private MyFragment RecommandFragment = new MyFragment();
@@ -50,11 +49,10 @@ public class MainLoginActivity extends BaseActivity {
     private MyFragment CrimeFragment = new MyFragment();
     private MyFragment ThrillerFragment = new MyFragment();
 
-    private ArrayList<Movie> moviesList = new ArrayList<>();
-
     private ArrayList<Fragment> fragments = new ArrayList<Fragment>();
+    private ArrayList<Movie> moviesList = new ArrayList<>();
     private Bundle bundle = new Bundle();
-    private String response;
+    private String response = null;
 
     private ViewPager myviewpager;
     private DrawerLayout mDrawerLayout;
@@ -73,7 +71,6 @@ public class MainLoginActivity extends BaseActivity {
     private NavigationView navigationView;
     private HorizontalScrollView horizontalScrollView;
 
-
     /**
      * onCreate function
      *
@@ -82,11 +79,12 @@ public class MainLoginActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //        while(response==null){}
+//        while(response==null){}
 //        parseJSONWithJSON(response);
         initFragment();
         MyFragmentPagerAdapter adapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), fragments);
         myviewpager.setAdapter(adapter);
+
     }
 
     /**
@@ -95,6 +93,7 @@ public class MainLoginActivity extends BaseActivity {
      */
     @Override
     protected void initData() {
+//        receive();
         /*
         test
          */
@@ -106,6 +105,9 @@ public class MainLoginActivity extends BaseActivity {
         RecommandFragment.setArguments(bundle);
     }
 
+    /**
+     * initialize the Fragments
+     */
     private void initFragment() {
         fragments.add(RecommandFragment);
         fragments.add(ActionFragment);
@@ -124,14 +126,13 @@ public class MainLoginActivity extends BaseActivity {
      */
     @Override
     protected void initView() {
-        setContentView(R.layout.main_login);
-
+        setContentView(R.layout.main_signout);
         myviewpager = findViewById(R.id.myviewpager);
-        mDrawerLayout = findViewById(R.id.main_login_DrawerLayout);
-        back = findViewById(R.id.main_login_title_ImageView);
-        navigationView = findViewById(R.id.main_login_navView);
+        mDrawerLayout = findViewById(R.id.main_signOut_DrawerLayout);
+        back = findViewById(R.id.main_signOut_title_ImageView);
+        navigationView = findViewById(R.id.main_signOut_navView);
         searchView = findViewById(R.id.searchView);
-        horizontalScrollView = findViewById(R.id.main_login_HorizontalScrollView);
+        horizontalScrollView = findViewById(R.id.main_signOut_HorizontalScrollView);
 
         tv_first = findViewById(R.id.tv_first);
         tv_second = findViewById(R.id.tv_second);
@@ -142,6 +143,7 @@ public class MainLoginActivity extends BaseActivity {
         tv_seventh = findViewById(R.id.tv_seventh);
         tv_eighth = findViewById(R.id.tv_eighth);
         tv_ninth = findViewById(R.id.tv_ninth);
+        TextView textArray[] = new TextView[]{tv_first, tv_second, tv_third, tv_fourth, tv_fifth, tv_sixth, tv_seventh, tv_eighth, tv_ninth};
     }
 
     /**
@@ -154,20 +156,14 @@ public class MainLoginActivity extends BaseActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
-                    case R.id.menu_item_MyFavorite:
-                        openActivity(FavoriteActivity.class, bundle);
+                    case R.id.menu_item_signIn_signUp:
+                        openActivity(SignUpActivity.class);
                         overridePendingTransition(R.anim.push_in_from_right, R.anim.push_out_to_left);
                         mDrawerLayout.closeDrawers();
-                        break;
-                    case R.id.menu_item_MyHistory:
-                        openActivity(HistoryActivity.class, bundle);
-                        overridePendingTransition(R.anim.push_in_from_right, R.anim.push_out_to_left);
-                        mDrawerLayout.closeDrawers();
-                        break;
-                    default:
                         break;
                 }
                 return false;
+
             }
         });
 
@@ -187,7 +183,6 @@ public class MainLoginActivity extends BaseActivity {
             public void onPageScrolled(int arg0, float arg1, int arg2) {
             }
         });
-
         back.setOnClickListener(this);
         searchView.setOnClickListener(this);
         tv_first.setOnClickListener(this);
@@ -210,12 +205,13 @@ public class MainLoginActivity extends BaseActivity {
     public void onClick(View view) {
         resetTextView();
         switch (view.getId()) {
-            case R.id.main_login_title_ImageView:
+            case R.id.main_signOut_title_ImageView:
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 overridePendingTransition(R.anim.push_in_from_top, R.anim.push_out_to_bottom);
                 break;
             case R.id.searchView:
                 openActivity(SearchActivity.class);
+                overridePendingTransition(R.anim.push_in_from_top,R.anim.not_move);
                 break;
             case R.id.tv_first:
                 changeTextView(0);
@@ -258,6 +254,11 @@ public class MainLoginActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void parseJSONWithJSON(String jsonData) {
+
+    }
+
     /**
      * Reset all textviews before changes
      */
@@ -297,7 +298,5 @@ public class MainLoginActivity extends BaseActivity {
         int rb_px = (int) curTextView.getX() + curTextView.getWidth() / 2;
         horizontalScrollView.scrollTo(rb_px - screenWidth / 2, 0);
     }
+
 }
-
-
-

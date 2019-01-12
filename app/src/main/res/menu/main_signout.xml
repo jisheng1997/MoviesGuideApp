@@ -2,8 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group>
         <item
-            android:id="@+id/menu_item_register_login"
-            android:title="@string/menu_logAndReg">
+            android:id="@+id/menu_item_signIn_signUp"
+            android:title="@string/menu_signUp_and_signIn"
+            android:icon="@mipmap/signup">
         </item>
     </group>
 </menu>

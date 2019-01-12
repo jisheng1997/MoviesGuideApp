@@ -11,24 +11,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Base">
-        <activity android:name=".MainLoginActivity">
+        <activity android:name=".MainSignUpActivity">
             <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".FavoriteActivity" />
         <activity android:name=".MovieDetailsActivity" />
         <activity android:name=".HistoryActivity" />
-        <activity android:name=".MainLogoutActivity" >
+        <activity android:name=".MainSignOutActivity" >
             <!--<intent-filter>-->
                 <!--<action android:name="android.intent.action.MAIN" />-->
                 <!--<category android:name="android.intent.category.LAUNCHER" />-->
             <!--</intent-filter>-->
+
         </activity>
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".SignUpActivity" />
         <activity android:name=".BaseActivity" />
-        <activity android:name=".RegisterActivity" />
+        <activity android:name=".SignInActivity" />
         <activity android:name=".SearchActivity" />
     </application>
 

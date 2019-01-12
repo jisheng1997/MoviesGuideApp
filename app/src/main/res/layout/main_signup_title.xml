@@ -12,12 +12,12 @@
     app:layout_constraintHorizontal_bias="0.0">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/main_login_title_Toorbar"
+        android:id="@+id/main_signUp_title_Toorbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/main_login_title_ImageView"
+            android:id="@+id/main_signUp_title_ImageView"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="20dp"
@@ -25,7 +25,7 @@
             android:src="@drawable/moren" />
 
         <TextView
-            android:id="@+id/main_login_title_TextView"
+            android:id="@+id/main_signUp_title_TextView"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginLeft="15dp"

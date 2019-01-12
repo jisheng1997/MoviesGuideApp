@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/login_view"
+    android:id="@+id/signUp_view"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:orientation="vertical"
     android:background="@color/White"
     app:layout_constraintHeight_percent="0.9"
-    app:layout_constraintTop_toBottomOf="@+id/login_register_title">
+    app:layout_constraintTop_toBottomOf="@+id/signUp_signIn_title">
 
 
     <LinearLayout
@@ -43,10 +43,10 @@
             android:textColorHint="@color/Gray" />
 
         <Button
-            android:id="@+id/login_btn"
+            android:id="@+id/signUp_btn"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:text="Login" />
+            android:text="@string/button_signUp" />f
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -62,11 +62,11 @@
                 android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/loginTo_register"
+                android:id="@+id/signUpTo_signIn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:text="Register"
+                android:text="Sign In"
                 android:textColor="@color/colorAccent"
                 android:textSize="20dp" />
 
