@@ -79,7 +79,7 @@ public class SearchActivity extends BaseActivity {
         switch (view.getId()){
             case R.id.search_title_back:
                 onBack();
-                overridePendingTransition(R.anim.not_move, R.anim.push_out_to_top);
+                overridePendingTransition(R.anim.push_in_from_bottom, R.anim.push_out_to_top);
                 break;
             default:
                 break;

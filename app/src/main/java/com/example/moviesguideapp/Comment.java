@@ -24,10 +24,7 @@ public class Comment {
      */
     public Comment(String username, String comment) {
         this.username = username;
-        if (comment.length() <= 45) {
-            comment_limit = true;
             this.comment = comment;
-        }
     }
 
     /**

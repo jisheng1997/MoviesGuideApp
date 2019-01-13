@@ -11,10 +11,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -26,9 +25,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import static android.telecom.DisconnectCause.ERROR;
-import static android.telephony.NetworkScan.SUCCESS;
-
 /**
  * version:1.12
  * author:
@@ -38,6 +34,7 @@ import static android.telephony.NetworkScan.SUCCESS;
 public class BaseActivity extends AppCompatActivity implements View.OnClickListener {
     private static Stack<Activity> listActivity = new Stack<Activity>();
     private String response = null;
+    public static final String TAG = "BaseActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,11 +113,11 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
      * get the data from the server
      * @param request
      */
-    public void sendRequest(final String request, final Handler handler) {
+    public void sendRequest(final String request) {
         new Thread() {
             public void run() {
                 try {
-                    String path = "http://172.29.4.41:8081/Android_server/movie_operation.php";
+                    String path = "http://192.168.0.139:8081/MoviesGuideApp/movie_operation.php";
                     URL url = new URL(path);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("POST");
@@ -133,15 +130,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
                     if(conn.getResponseCode() == 200){
                         InputStream is = conn.getInputStream();
                         response = parseInfo(is);
-                        Message mas= Message.obtain();
-                        mas.what = SUCCESS;
-                        mas.obj = response;
-                        handler.sendMessage(mas);
-
-                    }else{
-                        Message mas = Message.obtain();
-                        mas.what = ERROR;
-                        handler.sendMessage(mas);
+                        Log.d(TAG,"fucking =" + response);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -150,6 +139,9 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         }.start();
     }
 
+    public String getResponse() {
+        return response;
+    }
 
     protected String parseInfo(InputStream in) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
@@ -161,11 +153,11 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         return sb.toString();
     }
 
+
     /*
      *  parsing String(response) with JSONObject
      */
     protected void parseJSONWithJSON(String jsonData) {
-
     }
 
     /**
@@ -196,6 +188,11 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * Hide status bar and navigation bar
      */
+
+    public void onFresh(){
+        onCreate(null);
+    }
+
     public void hideBar() {
         if (Build.VERSION.SDK_INT >= 21) {
             View decorView = getWindow().getDecorView();

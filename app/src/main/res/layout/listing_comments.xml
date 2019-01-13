@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/listing_comments"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:background="@color/White"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintTop_toBottomOf="@+id/title"
+    app:layout_constraintHeight_percent="0.9">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/comments_list_RecyclerView"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" />
+</LinearLayout>

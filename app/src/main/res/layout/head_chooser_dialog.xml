@@ -1,0 +1,64 @@
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="4"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:id="@+id/image_01"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:src="@drawable/moren" />
+
+    <ImageView
+        android:id="@+id/image_02"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:src="@drawable/moren" />
+
+    <ImageView
+        android:id="@+id/image_03"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:src="@drawable/moren" />
+
+    <ImageView
+        android:id="@+id/image_04"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:src="@drawable/moren" />
+
+    <ImageView
+        android:id="@+id/image_05"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:src="@drawable/moren" />
+
+    <ImageView
+        android:id="@+id/image_06"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:src="@drawable/moren" />
+
+    <ImageView
+        android:id="@+id/image_07"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:src="@drawable/moren" />
+
+    <ImageView
+        android:id="@+id/image_08"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:src="@drawable/moren" />
+
+
+</GridLayout>

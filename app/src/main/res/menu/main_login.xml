@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_item_MyFavorite"
+            android:icon="@mipmap/favorite"
+            android:title="@string/menu_favorite"
+            android:typeface="monospace"/>
+        <item
+            android:id="@+id/menu_item_MyHistory"
+            android:icon="@mipmap/history"
+            android:title="@string/menu_history" />
+        <item
+            android:id="@+id/menu_item_MyComment"
+            android:icon="@mipmap/comment"
+            android:title="@string/menu_comment">
+
+        </item>
+        <item
+            android:id="@+id/menu_item_help"
+            android:icon="@mipmap/money"
+            android:title="@string/menu_help" />
+    </group>
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/kongbaione"
+            android:title=""/>
+        <item
+            android:id="@+id/kongbaitwo"
+            android:title=""/>
+        <item
+            android:id="@+id/menu_item_signout"
+            android:title="@string/menu_signout"/>
+    </group>
+</menu>
