@@ -4,7 +4,7 @@
     android:id="@+id/movie_info"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff">
+    android:background="@color/MyGray">
 
     <include layout="@layout/movie_info_title" />
     <include layout="@layout/movie_details" />

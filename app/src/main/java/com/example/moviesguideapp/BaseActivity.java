@@ -113,11 +113,10 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
      * get the data from the server
      * @param request
      */
-    public void sendRequest(final String request) {
+    public void sendRequest(final String request, final String path) {
         new Thread() {
             public void run() {
                 try {
-                    String path = "http://192.168.0.139:8081/MoviesGuideApp/movie_operation.php";
                     URL url = new URL(path);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("POST");
@@ -188,7 +187,6 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * Hide status bar and navigation bar
      */
-
     public void onFresh(){
         onCreate(null);
     }

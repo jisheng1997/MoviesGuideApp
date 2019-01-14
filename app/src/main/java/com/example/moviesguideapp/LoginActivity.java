@@ -7,12 +7,9 @@
 
 package com.example.moviesguideapp;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -36,15 +33,16 @@ public class LoginActivity extends BaseActivity {
     private ImageView back;
     private TextView loginTo_register;
     private LinearLayout linearLayout;
+    private String userName;
+    private String password;
     private Button loginBtn;
     private EditText account_EditText;
     private EditText password_EditText;
-    private String user;
-    private String password;
+    private int id_user ;
+    private int isSuccessful;
     private String data = null;
-    private String response = null;
-    protected static final int SUCCESS = 1;
-    protected static final int ERROR = 2;
+    private String curResponse = null;
+    private String path="http://192.168.1.101:8081/MoviesGuideApp/login&register.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,44 +82,41 @@ public class LoginActivity extends BaseActivity {
                 break;
             case R.id.loginTo_register:
                 openActivityAndCloseThis(RegisterActivity.class);
-                overridePendingTransition(R.anim.push_in_from_right,R.anim.push_out_to_right);
+                overridePendingTransition(R.anim.push_in_from_right,R.anim.push_out_to_left);
                 break;
             case R.id.login_view:
                 hideSoftInput(linearLayout.getWindowToken());
                 break;
             case R.id.login_btn:
-                openActivityAndCloseThis(MainLoginActivity.class);
+                login();
                 break;
             default:
                 break;
         }
     }
 
-    private Handler handler = new Handler(new Handler.Callback() {
-        @Override
-        public boolean handleMessage(Message msg) {
-            switch (msg.what) {
-                case SUCCESS:
-                    Toast.makeText(LoginActivity.this, (String) msg.obj, Toast.LENGTH_LONG).show();
-                    break;
-                case ERROR:
-                    Toast.makeText(LoginActivity.this, "please check your network", Toast.LENGTH_LONG).show();
-                    break;
-            }
-            return false;
-        }
-    });
-
     public void login() {
-        data = "username=" + user + "&password=" + password + "&login=";
-        user = account_EditText.getText().toString();
+        userName = account_EditText.getText().toString();
         password = password_EditText.getText().toString();
-
-        if (TextUtils.isEmpty(user) || TextUtils.isEmpty(password)) {
+        if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(password)) {
             Toast.makeText(this, "username and password are not allowed to be empty", Toast.LENGTH_LONG).show();
             return;
         }
-        sendRequest(data);
+        data = "username=" + userName + "&password=" + password + "&login=";
+        sendRequest(data,path);
+        while(curResponse == null){
+            curResponse = getResponse();
+        }
+        isSuccessful=Integer.parseInt(curResponse.substring(0,1));
+        if (isSuccessful == 1) {
+            id_user = Integer.parseInt(curResponse.substring(1,curResponse.length()-1));
+            Bundle bundle = new Bundle();
+            bundle.putInt("id_user", id_user);
+            bundle.putString("username", userName);
+            openActivity(MainLoginActivity.class, bundle);
+        } else if (isSuccessful == 2) {
+            Toast.makeText(getApplicationContext(), "username and password do not match", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void hideSoftInput(IBinder token) {

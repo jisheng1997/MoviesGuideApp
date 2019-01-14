@@ -5,7 +5,7 @@
     android:id="@+id/listing_comments"
     android:layout_width="match_parent"
     android:layout_height="0dp"
-    android:background="@color/White"
+    android:background="@color/MyGray"
     android:gravity="bottom"
     android:orientation="vertical"
     app:layout_constraintHorizontal_bias="0.0"
@@ -15,5 +15,6 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/comments_list_RecyclerView"
         android:layout_height="match_parent"
-        android:layout_width="match_parent" />
+        android:layout_width="match_parent"
+        android:background="@color/MyGray"/>
 </LinearLayout>

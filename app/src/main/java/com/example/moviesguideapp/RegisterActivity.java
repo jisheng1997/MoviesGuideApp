@@ -9,9 +9,7 @@ package com.example.moviesguideapp;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -22,8 +20,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 /**
  * version:1.12
  * author:
@@ -32,7 +28,7 @@ import java.util.ArrayList;
  */
 
 public class RegisterActivity extends BaseActivity {
-    public static final String TAG="RegisterActivity";
+    public static final String TAG = "RegisterActivity";
     private ImageView back;
     private TextView registerTo_login;
     private LinearLayout linearLayout;
@@ -40,14 +36,15 @@ public class RegisterActivity extends BaseActivity {
     private EditText account_EditText;
     private EditText password_EditText;
     private EditText confirm_password_EditText;
-    private String user;
     private String password;
     private String password_confirm;
     private String data;
-    private String response;
+    private String userName;
+    private String curResponse;
+    private String path = "http://192.168.1.101:8081/MoviesGuideApp/login&register.php";
+    private int isSuccessful;
+    private int id_user;
 
-    protected static final int SUCCESS = 1;
-    protected static final int ERROR = 2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,11 +80,11 @@ public class RegisterActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.back:
                 onBack();
-                overridePendingTransition(R.anim.push_in_from_left,R.anim.push_out_to_right);
+                overridePendingTransition(R.anim.push_in_from_left, R.anim.push_out_to_right);
                 break;
             case R.id.registerTo_login:
                 openActivityAndCloseThis(LoginActivity.class);
-                overridePendingTransition(R.anim.push_in_from_left,R.anim.push_out_to_right);
+                overridePendingTransition(R.anim.push_in_from_left, R.anim.push_out_to_right);
                 break;
             case R.id.register_view:
                 hideSoftInput(linearLayout.getWindowToken());
@@ -99,21 +96,6 @@ public class RegisterActivity extends BaseActivity {
                 break;
         }
     }
-    private Handler handler = new Handler(new Handler.Callback() {
-        @Override
-        public boolean handleMessage(Message msg) {
-            switch (msg.what) {
-                case SUCCESS:
-                    Toast.makeText(RegisterActivity.this, (String) msg.obj, Toast.LENGTH_LONG).show();
-                    break;
-                case ERROR:
-                    Toast.makeText(RegisterActivity.this, "please check your network", Toast.LENGTH_LONG).show();
-                    break;
-            }
-            return false;
-        }
-    });
-
 
     private void hideSoftInput(IBinder token) {
         if (token != null) {
@@ -122,15 +104,37 @@ public class RegisterActivity extends BaseActivity {
         }
     }
 
-    public void register(){
-        data = "username="+user+"&password="+password+"&register=";
-        user = account_EditText.getText().toString();
+    public void register() {
+        userName = account_EditText.getText().toString();
         password = password_EditText.getText().toString();
         password_confirm = confirm_password_EditText.getText().toString();
-        if (TextUtils.isEmpty(user)||TextUtils.isEmpty(password)||TextUtils.isEmpty(password_confirm)){
+        if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(password) || TextUtils.isEmpty(password_confirm)) {
             Toast.makeText(this, "username and password are not allowed to be empty", Toast.LENGTH_LONG).show();
             return;
         }
-        sendRequest(data);
+        data = "username=" + userName + "&password=" + password + "&register=";
+        sendRequest(data, path);
+        while (curResponse == null) {
+            curResponse = getResponse();
+        }
+        parseJSONWithJSON(curResponse);
+    }
+
+    @Override
+    protected void parseJSONWithJSON(String Data) {
+        isSuccessful = Integer.parseInt(Data.substring(0, 1));
+        if (isSuccessful == 1) {
+            Toast.makeText(getApplicationContext(), "username already exists", Toast.LENGTH_SHORT).show();
+        } else if (isSuccessful == 2) {
+            id_user = Integer.parseInt(Data.substring(1, Data.length() - 1));
+            Bundle bundle = new Bundle();
+            bundle.putInt("id_user", id_user);
+            bundle.putString("username", userName);
+            openActivity(MainLoginActivity.class, bundle);
+            Toast.makeText(getApplicationContext(), "register successfully", Toast.LENGTH_SHORT).show();
+        } else if (isSuccessful == 3) {
+            Toast.makeText(getApplicationContext(), "register error", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

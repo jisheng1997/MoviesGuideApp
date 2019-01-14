@@ -10,6 +10,7 @@ package com.example.moviesguideapp;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,6 +34,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -51,41 +55,37 @@ public class MainLoginActivity extends BaseActivity {
     private MyFragment RecommandFragment = new MyFragment();
     private MyFragment ActionFragment = new MyFragment();
     private MyFragment AdventureFragment = new MyFragment();
-    private MyFragment ScifiFragment = new MyFragment();
-    private MyFragment DramaFragment = new MyFragment();
     private MyFragment RomanceFragment = new MyFragment();
     private MyFragment ComedyFragment = new MyFragment();
     private MyFragment CrimeFragment = new MyFragment();
-    private MyFragment ThrillerFragment = new MyFragment();
 
     private ArrayList<Movie> moviesList = new ArrayList<>();
     private ArrayList<Movie> recommandMoviesList = new ArrayList<>();
     private ArrayList<Movie> actionMovieList = new ArrayList<>();
     private ArrayList<Movie> adventureMovieList = new ArrayList<>();
-    private ArrayList<Movie> scifiMovieList = new ArrayList<>();
-    private ArrayList<Movie> dramaMovieList = new ArrayList<>();
     private ArrayList<Movie> romanceMovieList = new ArrayList<>();
     private ArrayList<Movie> comedyMovieList = new ArrayList<>();
     private ArrayList<Movie> crimeMovieList = new ArrayList<>();
-    private ArrayList<Movie> thrillerMovieList = new ArrayList<>();
 
     private Bundle recommandBundle = new Bundle();
     private Bundle actionBundle = new Bundle();
     private Bundle adventureBundle = new Bundle();
-    private Bundle scifiBundle = new Bundle();
-    private Bundle dramaBundle = new Bundle();
     private Bundle romanceBundle = new Bundle();
     private Bundle comedyBundle = new Bundle();
     private Bundle crimeBundle = new Bundle();
-    private Bundle thrillerBundle = new Bundle();
 
     private ArrayList<Fragment> fragments = new ArrayList<Fragment>();
     private Bundle bundle = new Bundle();
+    private int id_user = 0;
+    private String userName = null;
     private String curResponse = null;
-//    private String recommandResponse,actionResponse,adventureResponse,scifiResponse,dramaResponse,romanceResponse,comedyResponse,crimeResponse,thrillResponse = null;
+    private String path = "http://192.168.1.101:8081/MoviesGuideApp/movie_operation.php";
 
     private ViewPager myviewpager;
     private DrawerLayout mDrawerLayout;
+    private View headview;
+    private CircleImageView headImage;
+    public static final int SELECT_PIC = 1;
 
     private TextView tv_first;
     private TextView tv_second;
@@ -94,20 +94,18 @@ public class MainLoginActivity extends BaseActivity {
     private TextView tv_fifth;
     private TextView tv_sixth;
     private TextView tv_seventh;
-    private TextView tv_eighth;
-    private TextView tv_ninth;
-    private ImageView back;
+    private TextView userNameView;
+    private ImageView imageView;
     private ImageView searchView;
     private NavigationView navigationView;
+    private TextView drawerUserNameView;
     private HorizontalScrollView horizontalScrollView;
     private AlertDialog.Builder alertDialog;
-
     Dialog dia;
 
 
     /**
      * onCreate function
-     *
      * @param savedInstanceState savedInstanceState
      */
     @Override
@@ -121,10 +119,13 @@ public class MainLoginActivity extends BaseActivity {
      */
     @Override
     protected void initData() {
-        sendRequest("get_all_movies=");
+        //send request to get all movies
+        sendRequest("get_all_movies=",path);
         while (curResponse == null) {
             curResponse = getResponse();
         }
+
+        //process data and initialize all the fragments
         parseJSONWithJSON(curResponse);
         setRecommandMoviesList();
         fragments.add(RecommandFragment);
@@ -136,14 +137,6 @@ public class MainLoginActivity extends BaseActivity {
         adventureBundle.putSerializable("moviesList", adventureMovieList);
         AdventureFragment.setArguments(adventureBundle);
         fragments.add(AdventureFragment);
-        scifiMovieList = setMovieList("Sci-Fi");
-        scifiBundle.putSerializable("moviesList", scifiMovieList);
-        ScifiFragment.setArguments(scifiBundle);
-        fragments.add(ScifiFragment);
-        dramaMovieList = setMovieList("drama");
-        dramaBundle.putSerializable("moviesList", dramaMovieList);
-        DramaFragment.setReenterTransition(dramaBundle);
-        fragments.add(DramaFragment);
         romanceMovieList = setMovieList("romance");
         romanceBundle.putSerializable("moviesList", romanceMovieList);
         RomanceFragment.setArguments(romanceBundle);
@@ -156,12 +149,15 @@ public class MainLoginActivity extends BaseActivity {
         crimeBundle.putSerializable("moviesList", crimeMovieList);
         CrimeFragment.setArguments(crimeBundle);
         fragments.add(CrimeFragment);
-        thrillerMovieList = setMovieList("thrill");
-        thrillerBundle.putSerializable("moviesList", thrillerMovieList);
-        ThrillerFragment.setArguments(thrillerBundle);
-        fragments.add(ThrillerFragment);
         MyFragmentPagerAdapter adapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), fragments);
         myviewpager.setAdapter(adapter);
+
+        //set user name
+        Bundle bundle = this.getIntent().getExtras();
+        userName = bundle.getString("username");
+        id_user = bundle.getInt("id_user");
+        userNameView.setText(userName);
+        drawerUserNameView.setText(userName);
 
     }
 
@@ -175,7 +171,7 @@ public class MainLoginActivity extends BaseActivity {
 
         myviewpager = findViewById(R.id.myviewpager);
         mDrawerLayout = findViewById(R.id.main_login_DrawerLayout);
-        back = findViewById(R.id.main_login_title_ImageView);
+        imageView = findViewById(R.id.main_login_title_ImageView);
         navigationView = findViewById(R.id.main_login_navView);
         searchView = findViewById(R.id.searchView);
         horizontalScrollView = findViewById(R.id.main_login_HorizontalScrollView);
@@ -187,8 +183,11 @@ public class MainLoginActivity extends BaseActivity {
         tv_fifth = findViewById(R.id.tv_fifth);
         tv_sixth = findViewById(R.id.tv_sixth);
         tv_seventh = findViewById(R.id.tv_seventh);
-        tv_eighth = findViewById(R.id.tv_eighth);
-        tv_ninth = findViewById(R.id.tv_ninth);
+        headview = navigationView.inflateHeaderView(R.layout.main_login_nav_header);
+        headImage = headview.findViewById(R.id.main_login_nav_header_headImage);
+        userNameView = findViewById(R.id.main_login_title_TextView);
+        View headerView = navigationView.getHeaderView(0);
+        drawerUserNameView = headerView.findViewById(R.id.main_login_nav_header_name);
         setAlertDialog();
     }
 
@@ -203,12 +202,12 @@ public class MainLoginActivity extends BaseActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.menu_item_MyFavorite:
-                        openActivity(FavoriteActivity.class, bundle);
+                        openActivity(FavoriteActivity.class);
                         overridePendingTransition(R.anim.push_in_from_right, R.anim.push_out_to_left);
                         mDrawerLayout.closeDrawers();
                         break;
                     case R.id.menu_item_MyHistory:
-                        openActivity(HistoryActivity.class, bundle);
+                        openActivity(HistoryActivity.class);
                         overridePendingTransition(R.anim.push_in_from_right, R.anim.push_out_to_left);
                         mDrawerLayout.closeDrawers();
                         break;
@@ -219,8 +218,7 @@ public class MainLoginActivity extends BaseActivity {
                         dia.show();
                         break;
                     case R.id.menu_item_MyComment:
-//                        commentBundle.putSerializable("commentsList", commentsList);
-                        openActivity(YourCommentActivity.class, bundle);
+                        openActivity(YourCommentActivity.class);
                         overridePendingTransition(R.anim.push_in_from_right, R.anim.push_out_to_left);
                         mDrawerLayout.closeDrawers();
                         break;
@@ -247,8 +245,7 @@ public class MainLoginActivity extends BaseActivity {
             public void onPageScrolled(int arg0, float arg1, int arg2) {
             }
         });
-
-        back.setOnClickListener(this);
+        imageView.setOnClickListener(this);
         searchView.setOnClickListener(this);
         tv_first.setOnClickListener(this);
         tv_second.setOnClickListener(this);
@@ -257,13 +254,11 @@ public class MainLoginActivity extends BaseActivity {
         tv_fifth.setOnClickListener(this);
         tv_sixth.setOnClickListener(this);
         tv_seventh.setOnClickListener(this);
-        tv_eighth.setOnClickListener(this);
-        tv_ninth.setOnClickListener(this);
+        headImage.setOnClickListener(this);
     }
 
     /**
      * override the onClick function
-     *
      * @param view
      */
     @Override
@@ -272,7 +267,6 @@ public class MainLoginActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.main_login_title_ImageView:
                 mDrawerLayout.openDrawer(GravityCompat.START);
-                overridePendingTransition(R.anim.push_in_from_top, R.anim.push_out_to_bottom);
                 break;
             case R.id.searchView:
                 openActivity(SearchActivity.class);
@@ -289,30 +283,17 @@ public class MainLoginActivity extends BaseActivity {
                 changeTextView(2);
                 myviewpager.setCurrentItem(2);
                 break;
-            case R.id.tv_fourth:
-                changeTextView(3);
-                myviewpager.setCurrentItem(3);
-                break;
-            case R.id.tv_fifth:
+            case R.id.tv_sixth:
                 changeTextView(4);
                 myviewpager.setCurrentItem(4);
-                break;
-            case R.id.tv_sixth:
-                changeTextView(5);
-                myviewpager.setCurrentItem(5);
                 break;
             case R.id.tv_seventh:
                 changeTextView(6);
                 myviewpager.setCurrentItem(6);
                 break;
-            case R.id.tv_eighth:
-                changeTextView(7);
-                myviewpager.setCurrentItem(7);
-                break;
-            case R.id.tv_ninth:
-                changeTextView(8);
-                myviewpager.setCurrentItem(8);
-                break;
+            case R.id.main_login_nav_header_headImage:
+                Intent intent = new Intent(this,HeadChooseActivity.class);
+                startActivityForResult(intent,SELECT_PIC);
             default:
                 break;
         }
@@ -323,41 +304,41 @@ public class MainLoginActivity extends BaseActivity {
      */
     public void resetTextView() {
         tv_first.getPaint().setFlags(0);
-        tv_first.setTextColor(Color.parseColor("#000000"));
+        tv_first.setTextColor(Color.parseColor("#A9A9A9"));
         tv_second.getPaint().setFlags(0);
-        tv_second.setTextColor(Color.parseColor("#000000"));
+        tv_second.setTextColor(Color.parseColor("#A9A9A9"));
         tv_third.getPaint().setFlags(0);
-        tv_third.setTextColor(Color.parseColor("#000000"));
+        tv_third.setTextColor(Color.parseColor("#A9A9A9"));
         tv_fourth.getPaint().setFlags(0);
-        tv_fourth.setTextColor(Color.parseColor("#000000"));
+        tv_fourth.setTextColor(Color.parseColor("#A9A9A9"));
         tv_fifth.getPaint().setFlags(0);
-        tv_fifth.setTextColor(Color.parseColor("#000000"));
+        tv_fifth.setTextColor(Color.parseColor("#A9A9A9"));
         tv_sixth.getPaint().setFlags(0);
-        tv_sixth.setTextColor(Color.parseColor("#000000"));
+        tv_sixth.setTextColor(Color.parseColor("#A9A9A9"));
         tv_seventh.getPaint().setFlags(0);
-        tv_seventh.setTextColor(Color.parseColor("#000000"));
-        tv_eighth.getPaint().setFlags(0);
-        tv_eighth.setTextColor(Color.parseColor("#000000"));
-        tv_ninth.getPaint().setFlags(0);
-        tv_ninth.setTextColor(Color.parseColor("#000000"));
+        tv_seventh.setTextColor(Color.parseColor("#A9A9A9"));
     }
 
     /**
      * Change text view which user click on
-     *
      * @param position
      */
     public void changeTextView(int position) {
-        TextView textArray[] = new TextView[]{tv_first, tv_second, tv_third, tv_fourth, tv_fifth, tv_sixth, tv_seventh, tv_eighth, tv_ninth};
+        TextView textArray[] = new TextView[]{tv_first, tv_second, tv_third, tv_fourth, tv_fifth, tv_sixth, tv_seventh};
         TextView curTextView = textArray[position];
         curTextView.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
-        curTextView.setTextColor(Color.parseColor("#00ffff"));
+        curTextView.setTextColor(Color.parseColor("#ffffff"));
+        DisplayMetrics metrics = new DisplayMetrics();
         WindowManager wm1 = this.getWindowManager();
-        int screenWidth = wm1.getDefaultDisplay().getWidth();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        int screenWidth = metrics.widthPixels;
         int rb_px = (int) curTextView.getX() + curTextView.getWidth() / 2;
         horizontalScrollView.scrollTo(rb_px - screenWidth / 2, 0);
     }
 
+    /**
+     *
+     */
     public void setAlertDialog() {
         alertDialog = new AlertDialog.Builder(MainLoginActivity.this);
         alertDialog.setTitle("Confirm");
@@ -406,15 +387,9 @@ public class MainLoginActivity extends BaseActivity {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 moviesList.add(i, new Movie());
                 moviesList.get(i).setName(jsonObject.getString("name"));
-                //moviesList.get(i).setDescription(jsonObject.getString("description"));
-                //moviesList.get(i).setDirector(jsonObject.getString("director"));
                 moviesList.get(i).setId_movie(Integer.parseInt(jsonObject.getString("id_movie")));
                 moviesList.get(i).setMovie_pic(this.getResources().getIdentifier(jsonObject.getString("movie_pic"), "drawable", getPackageName()));
                 moviesList.get(i).setMovie_type(jsonObject.getString("movie_type"));
-                //moviesList.get(i).setRating_douban(Float.parseFloat(jsonObject.getString("rating_douban")));
-                //moviesList.get(i).setRating_IMDB(Float.parseFloat(jsonObject.getString("rating_IMDB")));
-                //moviesList.get(i).setStaring(jsonObject.getString("staring"));
-                //moviesList.get(i).setYear(Integer.parseInt(jsonObject.getString("year")));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -422,7 +397,7 @@ public class MainLoginActivity extends BaseActivity {
     }
 
     public void setRecommandMoviesList() {
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 9; i++) {
             recommandMoviesList.add(moviesList.get(i));
         }
         recommandBundle.putSerializable("moviesList", recommandMoviesList);
@@ -441,6 +416,15 @@ public class MainLoginActivity extends BaseActivity {
             }
         }
         return movieArrayList;
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == SELECT_PIC && resultCode == RESULT_OK) {
+            int imgid = data.getIntExtra("image", -1);
+            if(imgid!=-1){
+                headImage.setImageResource(imgid);
+            }
+        }
     }
 
 }

@@ -9,56 +9,64 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@null"
-        android:src="@drawable/moren" />
+        android:src="@drawable/img01"
+        android:layout_margin="10dp"/>
 
     <ImageView
         android:id="@+id/image_02"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@null"
-        android:src="@drawable/moren" />
+        android:src="@drawable/img02"
+        android:layout_margin="10dp"/>
 
     <ImageView
         android:id="@+id/image_03"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@null"
-        android:src="@drawable/moren" />
+        android:src="@drawable/img03"
+        android:layout_margin="10dp"/>
 
     <ImageView
         android:id="@+id/image_04"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@null"
-        android:src="@drawable/moren" />
+        android:src="@drawable/img04"
+        android:layout_margin="10dp"/>
 
     <ImageView
         android:id="@+id/image_05"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@null"
-        android:src="@drawable/moren" />
+        android:src="@drawable/img05"
+        android:layout_margin="10dp"/>
 
     <ImageView
         android:id="@+id/image_06"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@null"
-        android:src="@drawable/moren" />
+        android:src="@drawable/img06"
+        android:layout_margin="10dp"/>
 
     <ImageView
         android:id="@+id/image_07"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@null"
-        android:src="@drawable/moren" />
+        android:src="@drawable/img07"
+        android:layout_margin="10dp"/>
 
     <ImageView
         android:id="@+id/image_08"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@null"
-        android:src="@drawable/moren" />
+        android:src="@drawable/img08"
+        android:layout_margin="10dp"/>
 
 
 </GridLayout>

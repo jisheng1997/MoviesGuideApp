@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_login_DrawerLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    app:theme="@style/ItemHeight">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -15,7 +16,7 @@
             android:id="@+id/main_login_ConstraintLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#ffffff">
+            android:background="@color/MyGray">
 
             <LinearLayout
                 android:id="@+id/title"
@@ -32,7 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/main_login_title_ImageView"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -47,12 +48,12 @@
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="35dp"
                         android:text="@string/defaultName"
-                        android:textColor="@color/White"
+                        android:textColor="@color/DarkGray"
                         android:textSize="16sp" />
 
                     <ImageView
                         android:id="@+id/searchView"
-                        android:layout_width="250dp"
+                        android:layout_width="220dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="35dp"
@@ -81,7 +82,7 @@
                         android:id="@+id/movie_sort"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/White"
+                        android:background="@color/DarkGray"
                         android:orientation="horizontal"
                         >
 
@@ -89,91 +90,77 @@
                             android:id="@+id/tv_first"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Recommand"
-                            android:textColor="@color/Black"
+                            android:text="@string/Recommend"
+                            android:textColor="@color/DarkGray"
                             android:textSize="22sp"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"/>
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="4sp"/>
 
                         <TextView
                             android:id="@+id/tv_second"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Action"
-                            android:textColor="@color/Black"
+                            android:text="@string/Action"
+                            android:textColor="@color/DarkGray"
                             android:textSize="22sp"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"/>
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="4sp"/>
 
                         <TextView
                             android:id="@+id/tv_third"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Adventrue"
-                            android:textColor="@color/Black"
+                            android:text="@string/Adventure"
+                            android:textColor="@color/DarkGray"
                             android:textSize="22sp"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"/>
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="4sp"/>
 
                         <TextView
                             android:id="@+id/tv_fourth"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Sci-fi"
-                            android:textColor="@color/Black"
+                            android:text="@string/Romance"
+                            android:textColor="@color/DarkGray"
                             android:textSize="22sp"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"/>
-
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="4sp"/>
                         <TextView
                             android:id="@+id/tv_fifth"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Drama"
-                            android:textColor="@color/Black"
+                            android:text="@string/Comedy"
+                            android:textColor="@color/DarkGray"
                             android:textSize="22sp"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"/>
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="4sp"/>
 
                         <TextView
                             android:id="@+id/tv_sixth"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Romance"
-                            android:textColor="@color/Black"
+                            android:text="@string/Crime"
+                            android:textColor="@color/DarkGray"
                             android:textSize="22sp"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"/>
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="4sp"/>
 
                         <TextView
                             android:id="@+id/tv_seventh"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Comedy"
-                            android:textColor="@color/Black"
+                            android:text="@string/TopRates"
+                            android:textColor="@color/DarkGray"
                             android:textSize="22sp"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"/>
-
-                        <TextView
-                            android:id="@+id/tv_eighth"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:text="Crime"
-                            android:textColor="@color/Black"
-                            android:textSize="22sp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"/>
-
-                        <TextView
-                            android:id="@+id/tv_ninth"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:text="Thriller"
-                            android:textColor="@color/Black"
-                            android:textSize="22sp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"/>
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="4sp"/>
 
                     </LinearLayout>
 
