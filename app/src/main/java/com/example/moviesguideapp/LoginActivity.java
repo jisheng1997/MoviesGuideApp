@@ -11,6 +11,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -42,11 +43,12 @@ public class LoginActivity extends BaseActivity {
     private int isSuccessful;
     private String data = null;
     private String curResponse = null;
-    private String path="http://192.168.1.101:8081/MoviesGuideApp/login&register.php";
+    private String path="http://192.168.0.139:8081/MoviesGuideApp/login&register.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activityManager.addActivityManager(this);
     }
 
     @Override
@@ -107,16 +109,19 @@ public class LoginActivity extends BaseActivity {
         while(curResponse == null){
             curResponse = getResponse();
         }
+
+        Log.d(TAG,"fucking = " + curResponse);
         isSuccessful=Integer.parseInt(curResponse.substring(0,1));
         if (isSuccessful == 1) {
             id_user = Integer.parseInt(curResponse.substring(1,curResponse.length()-1));
             Bundle bundle = new Bundle();
             bundle.putInt("id_user", id_user);
             bundle.putString("username", userName);
-            openActivity(MainLoginActivity.class, bundle);
+            openActivityAndCloseThis(MainLoginActivity.class, bundle);
         } else if (isSuccessful == 2) {
             Toast.makeText(getApplicationContext(), "username and password do not match", Toast.LENGTH_SHORT).show();
         }
+        curResponse = null;
     }
 
     private void hideSoftInput(IBinder token) {

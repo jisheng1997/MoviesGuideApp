@@ -9,9 +9,11 @@ package com.example.moviesguideapp;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -41,15 +43,17 @@ public class MovieDetailsActivity extends BaseActivity {
     private TextView movieDescription;
     private int movie_id;
     private String curResponse = null;
-    private String path = "http://192.168.1.101:8080/MoviesGuideApp/movie_operation.php";
+    private String path = "http://192.168.0.139:8081/MoviesGuideApp/movie_operation.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activityManager.addActivityManager(this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         CommentsAdapter adapter = new CommentsAdapter(this, CommentList);
         recyclerView.setAdapter(adapter);
+
     }
 
     @Override
@@ -57,11 +61,12 @@ public class MovieDetailsActivity extends BaseActivity {
         Bundle bundle = this.getIntent().getExtras();
         curMovie = (Movie) bundle.getSerializable("Movie");
         movie_id = curMovie.getId_movie();
-
+        Log.d(TAG, "initData: curMovie = " + movie_id);
         sendRequest("id_movie=" + movie_id + "&get_movie_detail=", path);
         while (curResponse == null) {
             curResponse = getResponse();
         }
+        Log.d(TAG, "initData: curResponse = " + curResponse);
         parseJSONWithJSON(curResponse);
         setMovieDetail();
     }
@@ -99,7 +104,7 @@ public class MovieDetailsActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.movie_info_title_ImageView:
-                onBack();
+                activityManager.removeCurrent();
                 break;
             default:
                 break;
@@ -109,17 +114,27 @@ public class MovieDetailsActivity extends BaseActivity {
     protected void parseJSONWithJSON(String jsonData) {
         try {
             JSONArray jsonArray = new JSONArray(jsonData);
-            JSONObject jsonObject = jsonArray.getJSONObject(0);
-            curMovie.setName(jsonObject.getString("name"));
-            curMovie.setId_movie(Integer.parseInt(jsonObject.getString("id_movie")));
-            curMovie.setMovie_pic(this.getResources().getIdentifier(jsonObject.getString("movie_pic"), "drawable", getPackageName()));
-            curMovie.setMovie_type(jsonObject.getString("movie_type"));
-            curMovie.setDirector(jsonObject.getString("director"));
-            curMovie.setDescription(jsonObject.getString("description"));
-            curMovie.setRating_douban(Float.parseFloat(jsonObject.getString("rating_douban")));
-            curMovie.setRating_IMDB(Float.parseFloat(jsonObject.getString("rating_IMDB")));
-            curMovie.setYear(jsonObject.getInt("movie_year"));
-            curMovie.setStaring(jsonObject.getString("staring"));
+            JSONObject movieObject = jsonArray.getJSONObject(0);
+            curMovie.setName(movieObject.getString("name"));
+            curMovie.setId_movie(Integer.parseInt(movieObject.getString("id_movie")));
+            curMovie.setMovie_pic(this.getResources().getIdentifier(movieObject.getString("movie_pic"), "drawable", getPackageName()));
+            curMovie.setMovie_type(movieObject.getString("movie_type"));
+            curMovie.setDirector(movieObject.getString("director"));
+            curMovie.setDescription(movieObject.getString("description"));
+            curMovie.setRating_douban(Float.parseFloat(movieObject.getString("rating_douban")));
+            curMovie.setRating_IMDB(Float.parseFloat(movieObject.getString("rating_IMDB")));
+            curMovie.setYear(movieObject.getInt("movie_year"));
+            curMovie.setStaring(movieObject.getString("staring"));
+            if(jsonArray.length() > 1) {
+                for (int i = 1; i < jsonArray.length(); i++) {
+                    JSONObject commentObject = jsonArray.getJSONObject(i);
+                    CommentList.add(i - 1, new Comment());
+                    CommentList.get(i - 1).setUsername(commentObject.getString("username") + ":");
+                    CommentList.get(i - 1).setComment(commentObject.getString("comment"));
+                }
+            }else{
+                Toast.makeText(this, "No one comment this movie. Go to add your comment", Toast.LENGTH_LONG).show();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

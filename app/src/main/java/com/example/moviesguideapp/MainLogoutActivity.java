@@ -17,6 +17,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -41,7 +42,6 @@ public class MainLogoutActivity extends BaseActivity {
      * The constant TAG.
      */
     public static final String TAG = "MainLogoutActivity";
-
     //nine fragment for display movieList
     private MyFragment RecommendFragment = new MyFragment();
     private MyFragment ActionFragment = new MyFragment();
@@ -67,7 +67,7 @@ public class MainLogoutActivity extends BaseActivity {
     private Bundle comedyBundle = new Bundle();
     private Bundle crimeBundle = new Bundle();
     private String curResponse = null;
-    private String path = "http://192.168.1.101:8081/MoviesGuideApp/movie_operation.php";
+    private String path = "http://192.168.0.139:8081/MoviesGuideApp/movie_operation.php";
 
     private ViewPager myviewpager;
     private DrawerLayout mDrawerLayout;
@@ -91,11 +91,7 @@ public class MainLogoutActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        while(response==null){}
-//        parseJSONWithJSON(response);
-        MyFragmentPagerAdapter adapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), fragments);
-        myviewpager.setAdapter(adapter);
-
+        activityManager.addActivityManager(this);
     }
 
     /**
@@ -108,6 +104,7 @@ public class MainLogoutActivity extends BaseActivity {
         while (curResponse == null) {
             curResponse = getResponse();
         }
+        Log.d(TAG, "initData: curResponse = " + curResponse);
         parseJSONWithJSON(curResponse);
         setRecommendMoviesList();
         fragments.add(RecommendFragment);

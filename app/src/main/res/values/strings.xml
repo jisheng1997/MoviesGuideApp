@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Dou Ban Jiang</string>
-    <string name="defaultName">zoslen</string>
+    <string name="defaultName">please login</string>
     <string name="menu_favorite"><font color="#454545"><font size="22">Your Watchlist</font></font></string>
     <string name="menu_history"><font color="#454545"><font size="22">Your History</font></font></string>
     <string name="menu_comment"><font color="#454545"><font size="22">Your Comment</font></font></string>

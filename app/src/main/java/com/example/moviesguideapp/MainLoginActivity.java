@@ -79,7 +79,7 @@ public class MainLoginActivity extends BaseActivity {
     private int id_user = 0;
     private String userName = null;
     private String curResponse = null;
-    private String path = "http://192.168.1.101:8081/MoviesGuideApp/movie_operation.php";
+    private String path = "http://192.168.0.139:8081/MoviesGuideApp/movie_operation.php";
 
     private ViewPager myviewpager;
     private DrawerLayout mDrawerLayout;
@@ -111,6 +111,7 @@ public class MainLoginActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activityManager.addActivityManager(this);
     }
 
     /**
@@ -124,7 +125,7 @@ public class MainLoginActivity extends BaseActivity {
         while (curResponse == null) {
             curResponse = getResponse();
         }
-
+        Log.d(TAG, "initData: curResponse = " + curResponse);
         //process data and initialize all the fragments
         parseJSONWithJSON(curResponse);
         setRecommandMoviesList();
@@ -354,7 +355,7 @@ public class MainLoginActivity extends BaseActivity {
         alertDialog.setPositiveButton("yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                openActivityAndCloseThis(LoginActivity.class);
+                openActivityAndCloseThis(MainLogoutActivity.class);
                 overridePendingTransition(R.anim.push_in_from_right, R.anim.push_out_to_left);
 
             }

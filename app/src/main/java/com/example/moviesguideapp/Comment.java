@@ -28,6 +28,12 @@ public class Comment {
     }
 
     /**
+     * Instantiates a new Comment.
+     */
+    public Comment() {
+    }
+
+    /**
      * Gets comment limit.
      * @return the comment limit
      */

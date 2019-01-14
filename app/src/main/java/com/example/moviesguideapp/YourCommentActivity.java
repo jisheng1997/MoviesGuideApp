@@ -4,26 +4,27 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
 
 public class YourCommentActivity extends BaseActivity {
+    /**
+     * The constant TAG.
+     */
+    public static final String TAG = "YourCommentActivity";
     private ArrayList<Comment> myCommentList = new ArrayList<>();
     private RecyclerView recyclerView;
     private ImageView imageView;
-
-
+    private String curResponse = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activityManager.addActivityManager(this);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        CommentsAdapter commentsadapter = new CommentsAdapter(this,myCommentList);
-        recyclerView.setAdapter(commentsadapter);
     }
     @Override
     protected void initData(){
@@ -31,13 +32,7 @@ public class YourCommentActivity extends BaseActivity {
 //        if(bundle != null) {
 //            myCommentList = (ArrayList<Comment>) bundle.getSerializable("commentsList");
 //        }
-        Comment comment = new Comment("Han Fujun","Fuck");
-        myCommentList.add(comment);
-        myCommentList.add(comment);
-        myCommentList.add(comment);
-        myCommentList.add(comment);
-        //test
-
+        Log.d(TAG, "initData: curResponse = " + curResponse);
 
     }
 
@@ -46,6 +41,10 @@ public class YourCommentActivity extends BaseActivity {
         setContentView(R.layout.your_comment_list);
         recyclerView = findViewById(R.id.comments_list_RecyclerView);
         imageView = findViewById(R.id.back);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        CommentsAdapter commentsadapter = new CommentsAdapter(this,myCommentList);
+        recyclerView.setAdapter(commentsadapter);
     }
     @Override
     protected void initListener(){

@@ -11,6 +11,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -28,6 +29,9 @@ import android.widget.Toast;
  */
 
 public class RegisterActivity extends BaseActivity {
+    /**
+     * The constant TAG.
+     */
     public static final String TAG = "RegisterActivity";
     private ImageView back;
     private TextView registerTo_login;
@@ -41,13 +45,14 @@ public class RegisterActivity extends BaseActivity {
     private String data;
     private String userName;
     private String curResponse;
-    private String path = "http://192.168.1.101:8081/MoviesGuideApp/login&register.php";
+    private String path = "http://192.168.0.139:8081/MoviesGuideApp/login&register.php";
     private int isSuccessful;
     private int id_user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activityManager.addActivityManager(this);
     }
 
     @Override
@@ -90,7 +95,7 @@ public class RegisterActivity extends BaseActivity {
                 hideSoftInput(linearLayout.getWindowToken());
                 break;
             case R.id.register_btn:
-                openActivityAndCloseThis(MainLoginActivity.class);
+                register();
                 break;
             default:
                 break;
@@ -112,29 +117,28 @@ public class RegisterActivity extends BaseActivity {
             Toast.makeText(this, "username and password are not allowed to be empty", Toast.LENGTH_LONG).show();
             return;
         }
+        if(!password.equals(password_confirm)){
+            Toast.makeText(this, "Two passwords must be same ", Toast.LENGTH_LONG).show();
+            return;
+        }
         data = "username=" + userName + "&password=" + password + "&register=";
         sendRequest(data, path);
         while (curResponse == null) {
             curResponse = getResponse();
         }
-        parseJSONWithJSON(curResponse);
-    }
-
-    @Override
-    protected void parseJSONWithJSON(String Data) {
-        isSuccessful = Integer.parseInt(Data.substring(0, 1));
+        isSuccessful = Integer.parseInt(curResponse.substring(0, 1));
         if (isSuccessful == 1) {
             Toast.makeText(getApplicationContext(), "username already exists", Toast.LENGTH_SHORT).show();
         } else if (isSuccessful == 2) {
-            id_user = Integer.parseInt(Data.substring(1, Data.length() - 1));
+            id_user = Integer.parseInt(curResponse.substring(1, curResponse.length() - 1));
             Bundle bundle = new Bundle();
             bundle.putInt("id_user", id_user);
             bundle.putString("username", userName);
-            openActivity(MainLoginActivity.class, bundle);
+            openActivityAndCloseThis(MainLoginActivity.class, bundle);
             Toast.makeText(getApplicationContext(), "register successfully", Toast.LENGTH_SHORT).show();
         } else if (isSuccessful == 3) {
             Toast.makeText(getApplicationContext(), "register error", Toast.LENGTH_SHORT).show();
         }
-
+        curResponse = null;
     }
 }

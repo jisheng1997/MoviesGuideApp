@@ -32,9 +32,9 @@ import java.io.InputStreamReader;
  * date:2019/1/10 15:19
  */
 public class BaseActivity extends AppCompatActivity implements View.OnClickListener {
-    private static Stack<Activity> listActivity = new Stack<Activity>();
+    public static ActivityManager activityManager = new ActivityManager();
     private String response = null;
-    public static final String TAG = "BaseActivity";
+    public static final String TAG = "dou ban jiang";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +92,6 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * Open activity.
-     *
      * @param targetActivityClass the target activity class
      */
     public void openActivity(Class<?> targetActivityClass) {
@@ -101,11 +100,20 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * Open activity and close last activity
-     *
      * @param targetActivityClass the target activity class
      */
     public void openActivityAndCloseThis(Class<?> targetActivityClass) {
         openActivity(targetActivityClass);
+        this.finish();
+    }
+
+    /**
+     * Open activity with bundle as data and close last activity
+     * @param targetActivityClass the target activity class
+     * @param bundle              the bundle
+     */
+    public void openActivityAndCloseThis(Class<?> targetActivityClass,Bundle bundle) {
+        openActivity(targetActivityClass,bundle);
         this.finish();
     }
 
@@ -129,13 +137,14 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
                     if(conn.getResponseCode() == 200){
                         InputStream is = conn.getInputStream();
                         response = parseInfo(is);
-                        Log.d(TAG,"fucking =" + response);
+                        Log.d(TAG,"fucking android =" + response);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }.start();
+        response = null;
     }
 
     public String getResponse() {
