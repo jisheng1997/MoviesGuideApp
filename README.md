@@ -63,7 +63,7 @@
     * (1) 修复了login与register一直失败的bug
     * (2) 实现了获取个人favoritelist的功能
     * (3) 实现了获取个人historylist的功能
-    * (4) 实现了电影评论展示的功能
+    * (4) 实现了电影评论展示的功能 <br><br><br>
 
 ## 1.项目总览
 * 1.1 项目介绍（Description)
