@@ -48,13 +48,19 @@ public class RegisterActivity extends BaseActivity {
     private String path = "http://192.168.0.139:8081/MoviesGuideApp/login&register.php";
     private int isSuccessful;
     private int id_user;
-
+    /**
+     * override the onCreate function
+     * @param savedInstanceState savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityManager.addActivityManager(this);
     }
-
+    /**
+     * override the initView function
+     * initialize the Views
+     */
     @Override
     protected void initView() {
         setContentView(R.layout.register);
@@ -66,12 +72,18 @@ public class RegisterActivity extends BaseActivity {
         password_EditText = findViewById(R.id.password_EditText);
         confirm_password_EditText = findViewById(R.id.confirm_password_EditText);
     }
-
+    /**
+     * override the initData function
+     * initialize the Data
+     */
     @Override
     protected void initData() {
 
     }
-
+    /**
+     * override the initListener function
+     * initial the listener
+     */
     @Override
     protected void initListener() {
         back.setOnClickListener(this);
@@ -79,7 +91,10 @@ public class RegisterActivity extends BaseActivity {
         linearLayout.setOnClickListener(this);
         registerBtn.setOnClickListener(this);
     }
-
+    /**
+     * override the onClick function
+     * initial the OnClickListener
+     */
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -108,7 +123,10 @@ public class RegisterActivity extends BaseActivity {
             manager.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
-
+    /**
+     * send register request which contains username ,password and confirm password
+     * return the register result for different situations
+     */
     public void register() {
         userName = account_EditText.getText().toString();
         password = password_EditText.getText().toString();
@@ -117,12 +135,25 @@ public class RegisterActivity extends BaseActivity {
             Toast.makeText(this, "username and password are not allowed to be empty", Toast.LENGTH_LONG).show();
             return;
         }
+        if (userName.length() > 20) {
+            Toast.makeText(this, "username should be no more than 20", Toast.LENGTH_LONG).show();
+            account_EditText.setText("");
+            return;
+        }
+        if (password.length() > 12) {
+            Toast.makeText(this, "password should be no more than 12", Toast.LENGTH_LONG).show();
+            password_EditText.setText("");
+            confirm_password_EditText.setText("");
+            return;
+        }
         if(!password.equals(password_confirm)){
             Toast.makeText(this, "Two passwords must be same ", Toast.LENGTH_LONG).show();
+            password_EditText.setText("");
+            confirm_password_EditText.setText("");
             return;
         }
         data = "username=" + userName + "&password=" + password + "&register=";
-        sendRequest(data, path);
+        sendRequest(data, login_register_path);
         while (curResponse == null) {
             curResponse = getResponse();
         }

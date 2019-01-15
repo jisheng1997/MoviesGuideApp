@@ -7,35 +7,45 @@
 
 package com.example.moviesguideapp;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.IBinder;
+import android.support.annotation.CallSuper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Stack;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
  * version:1.12
- * author:
  * className:BaseActivity
  * date:2019/1/10 15:19
  */
 public class BaseActivity extends AppCompatActivity implements View.OnClickListener {
     public static ActivityManager activityManager = new ActivityManager();
+    public static String movie_operation_path = "http://192.168.0.139:8081/MoviesGuideApp/movie_operation.php";
+    public static String login_register_path = "http://192.168.0.139:8081/MoviesGuideApp/login&register.php";
     private String response = null;
     public static final String TAG = "dou ban jiang";
 
+    /**
+     * override the onCreate function
+     *
+     * @param savedInstanceState savedInstanceState
+     */
+    @CallSuper
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +53,12 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         initListener();
         initData();
         hideBar();
+        ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hideSoftInput(view.getWindowToken());
+            }
+        });
     }
 
 
@@ -92,6 +108,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * Open activity.
+     *
      * @param targetActivityClass the target activity class
      */
     public void openActivity(Class<?> targetActivityClass) {
@@ -100,6 +117,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * Open activity and close last activity
+     *
      * @param targetActivityClass the target activity class
      */
     public void openActivityAndCloseThis(Class<?> targetActivityClass) {
@@ -109,16 +127,18 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * Open activity with bundle as data and close last activity
+     *
      * @param targetActivityClass the target activity class
      * @param bundle              the bundle
      */
-    public void openActivityAndCloseThis(Class<?> targetActivityClass,Bundle bundle) {
-        openActivity(targetActivityClass,bundle);
+    public void openActivityAndCloseThis(Class<?> targetActivityClass, Bundle bundle) {
+        openActivity(targetActivityClass, bundle);
         this.finish();
     }
 
     /**
      * get the data from the server
+     *
      * @param request
      */
     public void sendRequest(final String request, final String path) {
@@ -134,10 +154,10 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
                     conn.setDoOutput(true);
                     byte[] bytes = request.getBytes();
                     conn.getOutputStream().write(bytes);
-                    if(conn.getResponseCode() == 200){
+                    if (conn.getResponseCode() == 200) {
                         InputStream is = conn.getInputStream();
                         response = parseInfo(is);
-                        Log.d(TAG,"fucking android =" + response);
+                        Log.d(TAG, "dou ban jiang test : " + response);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -147,10 +167,20 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         response = null;
     }
 
+    /**
+     * get the response
+     *
+     * @return response
+     */
     public String getResponse() {
         return response;
     }
 
+    /**
+     * get the response
+     *
+     * @return response
+     */
     protected String parseInfo(InputStream in) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
         StringBuilder sb = new StringBuilder();
@@ -162,8 +192,8 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    /*
-     *  parsing String(response) with JSONObject
+    /**
+     * parsing String(response) with JSONObject
      */
     protected void parseJSONWithJSON(String jsonData) {
     }
@@ -194,12 +224,15 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /**
-     * Hide status bar and navigation bar
+     * refresh the current activity
      */
-    public void onFresh(){
+    public void onFresh() {
         onCreate(null);
     }
 
+    /**
+     * Hide status bar and navigation bar
+     */
     public void hideBar() {
         if (Build.VERSION.SDK_INT >= 21) {
             View decorView = getWindow().getDecorView();
@@ -209,6 +242,13 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
             decorView.setSystemUiVisibility(option);
             getWindow().setNavigationBarColor(Color.TRANSPARENT);
             getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
+    }
+
+    private void hideSoftInput(IBinder token) {
+        if (token != null) {
+            InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            manager.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
 }

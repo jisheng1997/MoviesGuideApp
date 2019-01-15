@@ -230,4 +230,7 @@ public class Movie implements Serializable {
         return rating_IMDB;
     }
 
+    public String getMovie_type() {
+        return movie_type;
+    }
 }

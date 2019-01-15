@@ -13,6 +13,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -38,14 +39,20 @@ public class HistoryActivity extends BaseActivity {
     private String curResponse = null;
     private String data = null;
     private int id_user = 0;
-    private String path="http://192.168.0.139:8081/MoviesGuideApp/movie_operation.php";
-
+    private TextView sort;
+    /**
+     * override the onCreate function
+     * @param savedInstanceState savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityManager.addActivityManager(this);
     }
-
+    /**
+     * override the initData function
+     * initialize the Data
+     */
     @Override
     protected void initData(){
         Bundle bundle = this.getIntent().getExtras();
@@ -53,19 +60,22 @@ public class HistoryActivity extends BaseActivity {
             id_user=bundle.getInt("id_user");
         }
         data = "id_user=" + id_user+"&for_history="+"&user_management=";
-        sendRequest(data,path);
+        sendRequest(data,movie_operation_path);
         while(curResponse == null){
             curResponse = getResponse();
         }
         if(!(curResponse == "")){
             parseJSONWithJSON(curResponse);
         }else{
-            Toast.makeText(this, "Your have see any movies", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Your have not see any movies", Toast.LENGTH_LONG).show();
         }
         Log.d(TAG, "initData: curResponse = " + curResponse);
 
     }
-
+    /**
+     * override the initView function
+     * initialize the Views
+     */
     @Override
     protected void initView(){
         setContentView(R.layout.history_list);
@@ -75,13 +85,21 @@ public class HistoryActivity extends BaseActivity {
         recyclerView.setLayoutManager(layoutManager);
         MovieAdapter movieadapter = new MovieAdapter(this,moviesList);
         recyclerView.setAdapter(movieadapter);
+        sort=findViewById(R.id.favoriteView);
+        sort.setText("Your History");
     }
-
+    /**
+     * override the initListener function
+     * initial the listener
+     */
     @Override
     protected void initListener(){
         imageView.setOnClickListener(this);
     }
-
+    /**
+     * override the onClick function
+     * initial the OnClickListener
+     */
     @Override
     public void onClick(View view){
         switch (view.getId()){
@@ -93,6 +111,11 @@ public class HistoryActivity extends BaseActivity {
                 break;
         }
     }
+
+    /**
+     * override the parseJSONWithJSON function
+     * handle the response from database
+     */
     @Override
     protected void parseJSONWithJSON(String jsonData) {
         try {

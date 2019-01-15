@@ -7,6 +7,7 @@
     android:layout_height="0dp"
     android:gravity="top"
     android:orientation="horizontal"
+    android:background="@color/Blue"
     app:layout_constraintHeight_percent="0.1"
     app:layout_constraintHorizontal_bias="0.0"
     app:layout_constraintBottom_toTopOf="@+id/listing_movies">
@@ -14,10 +15,10 @@
     <SearchView
         android:id="@+id/searchView"
         android:layout_width="250dp"
-        android:layout_height="40dp"
+        android:layout_height="30dp"
         android:layout_marginTop="25dp"
-        android:layout_marginLeft="25dp"
-        android:background="@color/DarkGray"
+        android:layout_marginLeft="15dp"
+        android:background="@color/DimGray"
         android:queryHint="search"
         app:iconifiedByDefault="true" />
 
@@ -25,9 +26,9 @@
         android:id="@+id/search_title_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:layout_marginLeft="45dp"
-        android:text="@android:string/cancel"
-        android:textColor="@color/Black"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:text="@string/lhtnmsl"
+        android:textColor="@color/MyGray"
         android:clickable="true"/>
 </LinearLayout>

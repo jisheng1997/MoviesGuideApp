@@ -12,16 +12,17 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import static com.example.moviesguideapp.MainLoginActivity.TAG;
+
 public class MyFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private ArrayList<Movie> mMovieList = new ArrayList<>();
     MovieAdapter mAdapter;
-    String movieType;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.main_listing_movies, container, false);
         mRecyclerView = view.findViewById(R.id.movies_list_RecyclerView);
         Bundle bundle = getArguments();
@@ -31,7 +32,6 @@ public class MyFragment extends Fragment {
             return view;
 
     }
-
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

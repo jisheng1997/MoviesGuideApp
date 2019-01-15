@@ -58,6 +58,7 @@ public class MainLoginActivity extends BaseActivity {
     private MyFragment RomanceFragment = new MyFragment();
     private MyFragment ComedyFragment = new MyFragment();
     private MyFragment CrimeFragment = new MyFragment();
+    private MyFragment TopFragment = new MyFragment();
 
     private ArrayList<Movie> moviesList = new ArrayList<>();
     private ArrayList<Movie> recommandMoviesList = new ArrayList<>();
@@ -66,6 +67,7 @@ public class MainLoginActivity extends BaseActivity {
     private ArrayList<Movie> romanceMovieList = new ArrayList<>();
     private ArrayList<Movie> comedyMovieList = new ArrayList<>();
     private ArrayList<Movie> crimeMovieList = new ArrayList<>();
+    private ArrayList<Movie> topRatesMovieList = new ArrayList<>();
 
     private Bundle recommandBundle = new Bundle();
     private Bundle actionBundle = new Bundle();
@@ -73,13 +75,13 @@ public class MainLoginActivity extends BaseActivity {
     private Bundle romanceBundle = new Bundle();
     private Bundle comedyBundle = new Bundle();
     private Bundle crimeBundle = new Bundle();
+    private Bundle topratesBundle = new Bundle();
 
     private ArrayList<Fragment> fragments = new ArrayList<Fragment>();
     private Bundle bundle = new Bundle();
     private int id_user = 0;
     private String userName = null;
     private String curResponse = null;
-    private String path = "http://192.168.0.139:8081/MoviesGuideApp/movie_operation.php";
 
     private ViewPager myviewpager;
     private DrawerLayout mDrawerLayout;
@@ -120,8 +122,12 @@ public class MainLoginActivity extends BaseActivity {
      */
     @Override
     protected void initData() {
+        //set user name
+        Bundle bundle = this.getIntent().getExtras();
+        userName = bundle.getString("username");
+        id_user = bundle.getInt("id_user");
         //send request to get all movies
-        sendRequest("get_all_movies=",path);
+        sendRequest("get_all_movies=",movie_operation_path);
         while (curResponse == null) {
             curResponse = getResponse();
         }
@@ -150,16 +156,14 @@ public class MainLoginActivity extends BaseActivity {
         crimeBundle.putSerializable("moviesList", crimeMovieList);
         CrimeFragment.setArguments(crimeBundle);
         fragments.add(CrimeFragment);
+        setTopRatesMovieList();
+        topratesBundle.putSerializable("moviesList", topRatesMovieList);
+        TopFragment.setArguments(topratesBundle);
+        fragments.add(TopFragment);
         MyFragmentPagerAdapter adapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), fragments);
         myviewpager.setAdapter(adapter);
-
-        //set user name
-        Bundle bundle = this.getIntent().getExtras();
-        userName = bundle.getString("username");
-        id_user = bundle.getInt("id_user");
         userNameView.setText(userName);
         drawerUserNameView.setText(userName);
-
     }
 
     /**
@@ -203,12 +207,15 @@ public class MainLoginActivity extends BaseActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.menu_item_MyFavorite:
-                        openActivity(FavoriteActivity.class);
+                        bundle.putInt("id_user",id_user);
+                        openActivity(FavoriteActivity.class,bundle);
                         overridePendingTransition(R.anim.push_in_from_right, R.anim.push_out_to_left);
                         mDrawerLayout.closeDrawers();
                         break;
                     case R.id.menu_item_MyHistory:
-                        openActivity(HistoryActivity.class);
+                        bundle.putInt("id_user",id_user);
+                        bundle.putString("sort","Your History");
+                        openActivity(HistoryActivity.class,bundle);
                         overridePendingTransition(R.anim.push_in_from_right, R.anim.push_out_to_left);
                         mDrawerLayout.closeDrawers();
                         break;
@@ -219,7 +226,9 @@ public class MainLoginActivity extends BaseActivity {
                         dia.show();
                         break;
                     case R.id.menu_item_MyComment:
-                        openActivity(YourCommentActivity.class);
+                        bundle.putInt("id_user",id_user);
+                        bundle.putString("sort","Your Comment");
+                        openActivity(YourCommentActivity.class,bundle);
                         overridePendingTransition(R.anim.push_in_from_right, R.anim.push_out_to_left);
                         mDrawerLayout.closeDrawers();
                         break;
@@ -270,7 +279,8 @@ public class MainLoginActivity extends BaseActivity {
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 break;
             case R.id.searchView:
-                openActivity(SearchActivity.class);
+                openActivity(SearchActivity.class,bundle);
+                overridePendingTransition(R.anim.push_in_from_top,R.anim.not_move);
                 break;
             case R.id.tv_first:
                 changeTextView(0);
@@ -284,9 +294,17 @@ public class MainLoginActivity extends BaseActivity {
                 changeTextView(2);
                 myviewpager.setCurrentItem(2);
                 break;
-            case R.id.tv_sixth:
+            case R.id.tv_fourth:
+                changeTextView(3);
+                myviewpager.setCurrentItem(2);
+                break;
+            case R.id.tv_fifth:
                 changeTextView(4);
-                myviewpager.setCurrentItem(4);
+                myviewpager.setCurrentItem(2);
+                break;
+            case R.id.tv_sixth:
+                changeTextView(5);
+                myviewpager.setCurrentItem(5);
                 break;
             case R.id.tv_seventh:
                 changeTextView(6);
@@ -338,7 +356,7 @@ public class MainLoginActivity extends BaseActivity {
     }
 
     /**
-     *
+     * set an AlertDialog when user what to sign out
      */
     public void setAlertDialog() {
         alertDialog = new AlertDialog.Builder(MainLoginActivity.this);
@@ -363,7 +381,7 @@ public class MainLoginActivity extends BaseActivity {
 
         dia = new Dialog(MainLoginActivity.this, R.style.edit_AlertDialog_style);
         dia.setContentView(R.layout.dialog_layout);
-        ImageView dialogImageView = (ImageView) dia.findViewById(R.id.economicalHelp);
+        ImageView dialogImageView = dia.findViewById(R.id.economicalHelp);
         dialogImageView.setBackgroundResource(R.drawable.code);
         dia.setCanceledOnTouchOutside(true);
         Window w = dia.getWindow();
@@ -379,7 +397,10 @@ public class MainLoginActivity extends BaseActivity {
                     }
                 });
     }
-
+    /**
+     * override the parseJSONWithJSON function
+     * handle the response from database
+     */
     @Override
     protected void parseJSONWithJSON(String jsonData) {
         try {
@@ -391,20 +412,26 @@ public class MainLoginActivity extends BaseActivity {
                 moviesList.get(i).setId_movie(Integer.parseInt(jsonObject.getString("id_movie")));
                 moviesList.get(i).setMovie_pic(this.getResources().getIdentifier(jsonObject.getString("movie_pic"), "drawable", getPackageName()));
                 moviesList.get(i).setMovie_type(jsonObject.getString("movie_type"));
+                moviesList.get(i).setRating_douban(Float.parseFloat(jsonObject.getString("rating_douban")));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * set the recommendMovieList from the movie list
+     */
     public void setRecommandMoviesList() {
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 15; i++) {
             recommandMoviesList.add(moviesList.get(i));
         }
         recommandBundle.putSerializable("moviesList", recommandMoviesList);
         RecommandFragment.setArguments(recommandBundle);
     }
-
+    /**
+     * set the different type of movies from the movie list
+     */
     public ArrayList<Movie> setMovieList(String movieType) {
         ArrayList<Movie> movieArrayList = new ArrayList<>();
         for (int i = 0; i < moviesList.size(); i++) {
@@ -418,13 +445,34 @@ public class MainLoginActivity extends BaseActivity {
         }
         return movieArrayList;
     }
-
+    /**
+     * set the init Avatar
+     */
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == SELECT_PIC && resultCode == RESULT_OK) {
             int imgid = data.getIntExtra("image", -1);
             if(imgid!=-1){
                 headImage.setImageResource(imgid);
             }
+        }
+    }
+
+    /**
+     * set the topRatesMovieList from the movie list
+     */
+    public void setTopRatesMovieList(){
+        Movie tempMovie;
+        for (int i =0;i<moviesList.size()-1;i++){
+            for(int j=0 ; j<moviesList.size()-1-i;j++){
+                if (moviesList.get(j).getRating_douban() <= moviesList.get(j+1).getRating_douban()){
+                    tempMovie = moviesList.get(j);
+                    moviesList.set(j,moviesList.get(j+1));
+                    moviesList.set(j+1,tempMovie);
+                }
+            }
+        }
+        for (int k= 0;k<9;k++){
+            topRatesMovieList.add(k,moviesList.get(k));
         }
     }
 

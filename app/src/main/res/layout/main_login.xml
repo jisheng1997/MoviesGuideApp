@@ -50,13 +50,20 @@
                         android:textColor="@color/DarkGray"
                         android:textSize="16sp" />
 
-                    <ImageView
-                        android:id="@+id/searchView"
-                        android:layout_width="220dp"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="35dp"
-                        android:src="@drawable/search" />
+                        android:layout_gravity="right"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginTop="32dp">
+
+                        <ImageView
+                            android:id="@+id/searchView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/search" />
+
+                    </LinearLayout>
 
                 </android.support.v7.widget.Toolbar>
 

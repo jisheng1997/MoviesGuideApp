@@ -11,7 +11,7 @@
     <string name="password_hint">please type in your password</string>
     <string name="confirm_password_hint">please confirm your password</string>
 
-    <string name="cancel">cancel</string>
+    <string name="lhtnmsl">Cancel</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_comment">CommentActivity</string>
@@ -22,5 +22,6 @@
     <string name="Comedy">Comedy</string>
     <string name="Crime">Crime</string>
     <string name="TopRates">Top Rates</string>
+    <string name="Mypath">"http://192.168.0.139:8081/MoviesGuideApp/movie_operation.php"</string>
 
 </resources>

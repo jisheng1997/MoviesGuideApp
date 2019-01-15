@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +19,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import static com.example.moviesguideapp.MainLoginActivity.TAG;
+
 /**
  * version:1.12
- * author:
  * className:MovieAdapter
  * date:2019/1/10 15:19
  */
@@ -56,11 +58,21 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
                 Movie movie = mMovieList.get(position);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("Movie", movie);
-                Intent intent = new Intent(mActivity, MovieDetailsActivity.class);
-                intent.putExtras(bundle);
-                mActivity.startActivity(intent);
+                Bundle bundle = mActivity.getIntent().getExtras();
+                if(bundle!=null){
+                    bundle.putSerializable("Movie", movie);
+                    Intent intent = new Intent(mActivity, MovieDetailsActivity.class);
+                    intent.putExtras(bundle);
+                    mActivity.startActivity(intent);
+                }else{
+                    Bundle bundle2 = new Bundle();
+                    bundle2.putInt("id_user",0);
+                    bundle2.putSerializable("Movie", movie);
+                    Intent intent = new Intent(mActivity, MovieDetailsActivity.class);
+                    intent.putExtras(bundle2);
+                    mActivity.startActivity(intent);
+                }
+
             }
         });
         return holder;

@@ -28,8 +28,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="60dp"
         android:text="Login/Register" />
 
 </LinearLayout>

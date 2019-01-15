@@ -3,26 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/movie_details"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="0dp"
+    android:background="@color/MyGray"
     android:gravity="bottom"
     android:orientation="vertical"
-    android:background="@color/MyGray"
     app:layout_constraintHeight_percent="0.9"
     app:layout_constraintTop_toBottomOf="@+id/title">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/MyGray">
+        android:background="@color/MyGray"
+        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/movie_details_LLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
 
             <ImageView
@@ -35,17 +34,16 @@
                 android:layout_marginEnd="12dp"
                 android:layout_marginRight="12dp"
                 android:layout_marginBottom="12dp"
-                android:src="@drawable/m01"
                 android:focusable="true"
-                android:focusableInTouchMode="true"/>
+                android:focusableInTouchMode="true"
+                android:src="@drawable/m01" />
 
             <LinearLayout
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:gravity="center"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/movies_name"
@@ -53,20 +51,20 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginBottom="30dp"
-                    android:textColor="@color/DarkGray"
-                    android:textSize="50px"
                     android:focusable="true"
-                    android:focusableInTouchMode="true"/>
+                    android:focusableInTouchMode="true"
+                    android:textColor="@color/DarkGray"
+                    android:textSize="50px" />
 
                 <TextView
-                    android:id="@+id/movies_staring"
+                    android:id="@+id/movies_rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:textColor="@color/DarkGray"
-                    android:textSize="50px"
                     android:focusable="true"
-                    android:focusableInTouchMode="true"/>
+                    android:focusableInTouchMode="true"
+                    android:textColor="@color/DarkGray"
+                    android:textSize="50px" />
 
                 <TextView
                     android:id="@+id/movies_year"
@@ -74,10 +72,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="30dp"
-                    android:textColor="@color/DarkGray"
-                    android:textSize="50px"
                     android:focusable="true"
-                    android:focusableInTouchMode="true"/>
+                    android:focusableInTouchMode="true"
+                    android:textColor="@color/DarkGray"
+                    android:textSize="50px" />
 
             </LinearLayout>
 
@@ -88,43 +86,72 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginBottom="10dp"
             android:layout_marginStart="20dp"
-            android:textColor="@color/DarkGray"
-            android:textSize="50px"
+            android:layout_marginBottom="10dp"
             android:focusable="true"
-            android:focusableInTouchMode="true"/>
+            android:focusableInTouchMode="true"
+            android:textColor="@color/DarkGray"
+            android:textSize="50px" />
 
         <TextView
-            android:id="@+id/movies_rating"
+            android:id="@+id/movies_staring"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginBottom="10dp"
             android:layout_marginStart="20dp"
-            android:textColor="@color/DarkGray"
-            android:textSize="50px"
+            android:layout_marginBottom="10dp"
             android:focusable="true"
-            android:focusableInTouchMode="true"/>
+            android:focusableInTouchMode="true"
+            android:textColor="@color/DarkGray"
+            android:textSize="50px" />
 
         <TextView
             android:id="@+id/movies_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:textColor="@color/DarkGray"
-            android:textSize="50px"
             android:focusable="true"
-            android:focusableInTouchMode="true"/>
+            android:focusableInTouchMode="true"
+            android:textColor="@color/DarkGray"
+            android:textSize="50px" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/movie_details_RecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:layout_marginStart="10dp"
-            android:nestedScrollingEnabled="false"
-            android:background="@color/MyGray"/>
+            android:layout_marginTop="20dp"
+            android:background="@color/MyGray"
+            android:nestedScrollingEnabled="false" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/comment_EditText"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edit_background"
+                android:hint="Input your comment"
+                android:textColor="@color/Black"
+                android:textColorHint="@color/DarkGray" />
+
+            <Button
+                android:id="@+id/comment_Button"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:text="commit"
+                android:textSize="10dp" />
+        </LinearLayout>
 
     </LinearLayout>
 

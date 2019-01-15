@@ -27,9 +27,6 @@
             android:id="@+id/kongbaione"
             android:title=""/>
         <item
-            android:id="@+id/kongbaitwo"
-            android:title=""/>
-        <item
             android:id="@+id/menu_item_signout"
             android:title="@string/menu_signout"/>
     </group>

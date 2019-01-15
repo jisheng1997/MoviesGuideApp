@@ -43,14 +43,19 @@ public class LoginActivity extends BaseActivity {
     private int isSuccessful;
     private String data = null;
     private String curResponse = null;
-    private String path="http://192.168.0.139:8081/MoviesGuideApp/login&register.php";
-
+    /**
+     * override the onCreate function
+     * @param savedInstanceState savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityManager.addActivityManager(this);
     }
-
+    /**
+     * override the initView function
+     * initialize the Views
+     */
     @Override
     protected void initView() {
         setContentView(R.layout.login);
@@ -61,12 +66,18 @@ public class LoginActivity extends BaseActivity {
         account_EditText = findViewById(R.id.account_EditText);
         password_EditText = findViewById(R.id.password_EditText);
     }
-
+    /**
+     * override the initData function
+     * initialize the Data
+     */
     @Override
     protected void initData() {
 
     }
-
+    /**
+     * override the initListener function
+     * initial the listener
+     */
     @Override
     protected void initListener() {
         back.setOnClickListener(this);
@@ -74,7 +85,10 @@ public class LoginActivity extends BaseActivity {
         loginTo_register.setOnClickListener(this);
         linearLayout.setOnClickListener(this);
     }
-
+    /**
+     * override the onClick function
+     * initial the OnClickListener
+     */
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -97,6 +111,10 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
+    /**
+     * send login request which contains username and password
+     * return the login result for different situations
+     */
     public void login() {
         userName = account_EditText.getText().toString();
         password = password_EditText.getText().toString();
@@ -105,12 +123,11 @@ public class LoginActivity extends BaseActivity {
             return;
         }
         data = "username=" + userName + "&password=" + password + "&login=";
-        sendRequest(data,path);
+        sendRequest(data,login_register_path);
         while(curResponse == null){
             curResponse = getResponse();
         }
 
-        Log.d(TAG,"fucking = " + curResponse);
         isSuccessful=Integer.parseInt(curResponse.substring(0,1));
         if (isSuccessful == 1) {
             id_user = Integer.parseInt(curResponse.substring(1,curResponse.length()-1));
@@ -130,5 +147,4 @@ public class LoginActivity extends BaseActivity {
             manager.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
-
 }

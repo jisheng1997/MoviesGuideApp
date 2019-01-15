@@ -49,6 +49,7 @@ public class MainLogoutActivity extends BaseActivity {
     private MyFragment RomanceFragment = new MyFragment();
     private MyFragment ComedyFragment = new MyFragment();
     private MyFragment CrimeFragment = new MyFragment();
+    private MyFragment TopFragment = new MyFragment();
 
     private ArrayList<Fragment> fragments = new ArrayList<Fragment>();
     private ArrayList<Movie> moviesList = new ArrayList<>();
@@ -58,6 +59,7 @@ public class MainLogoutActivity extends BaseActivity {
     private ArrayList<Movie> romanceMovieList = new ArrayList<>();
     private ArrayList<Movie> comedyMovieList = new ArrayList<>();
     private ArrayList<Movie> crimeMovieList = new ArrayList<>();
+    private ArrayList<Movie> topRatesMovieList = new ArrayList<>();
 
     private Bundle bundle = new Bundle();
     private Bundle recommendBundle = new Bundle();
@@ -66,8 +68,8 @@ public class MainLogoutActivity extends BaseActivity {
     private Bundle romanceBundle = new Bundle();
     private Bundle comedyBundle = new Bundle();
     private Bundle crimeBundle = new Bundle();
+    private Bundle topratesBundle = new Bundle();
     private String curResponse = null;
-    private String path = "http://192.168.0.139:8081/MoviesGuideApp/movie_operation.php";
 
     private ViewPager myviewpager;
     private DrawerLayout mDrawerLayout;
@@ -85,7 +87,6 @@ public class MainLogoutActivity extends BaseActivity {
 
     /**
      * onCreate function
-     *
      * @param savedInstanceState savedInstanceState
      */
     @Override
@@ -100,11 +101,11 @@ public class MainLogoutActivity extends BaseActivity {
      */
     @Override
     protected void initData() {
-        sendRequest("get_all_movies=",path);
+
+        sendRequest("get_all_movies=",movie_operation_path);
         while (curResponse == null) {
             curResponse = getResponse();
         }
-        Log.d(TAG, "initData: curResponse = " + curResponse);
         parseJSONWithJSON(curResponse);
         setRecommendMoviesList();
         fragments.add(RecommendFragment);
@@ -128,7 +129,10 @@ public class MainLogoutActivity extends BaseActivity {
         crimeBundle.putSerializable("moviesList", crimeMovieList);
         CrimeFragment.setArguments(crimeBundle);
         fragments.add(CrimeFragment);
-
+        setTopRatesMovieList();
+        topratesBundle.putSerializable("moviesList", topRatesMovieList);
+        TopFragment.setArguments(topratesBundle);
+        fragments.add(TopFragment);
         MyFragmentPagerAdapter adapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), fragments);
         myviewpager.setAdapter(adapter);
     }
@@ -207,7 +211,6 @@ public class MainLogoutActivity extends BaseActivity {
 
     /**
      * override the onClick function
-     *
      * @param view
      */
     @Override
@@ -219,7 +222,7 @@ public class MainLogoutActivity extends BaseActivity {
                 break;
             case R.id.searchView:
                 openActivity(SearchActivity.class);
-                overridePendingTransition(R.anim.push_in_from_top, R.anim.push_out_to_bottom);
+                overridePendingTransition(R.anim.push_in_from_top,R.anim.not_move);
                 break;
             case R.id.tv_first:
                 changeTextView(0);
@@ -253,7 +256,10 @@ public class MainLogoutActivity extends BaseActivity {
                 break;
         }
     }
-
+    /**
+     * override the parseJSONWithJSON function
+     * handle the response from database
+     */
     @Override
     protected void parseJSONWithJSON(String jsonData) {
         try {
@@ -265,6 +271,7 @@ public class MainLogoutActivity extends BaseActivity {
                 moviesList.get(i).setId_movie(Integer.parseInt(jsonObject.getString("id_movie")));
                 moviesList.get(i).setMovie_pic(this.getResources().getIdentifier(jsonObject.getString("movie_pic"), "drawable", getPackageName()));
                 moviesList.get(i).setMovie_type(jsonObject.getString("movie_type"));
+                moviesList.get(i).setRating_douban(Float.parseFloat(jsonObject.getString("rating_douban")));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -294,7 +301,6 @@ public class MainLogoutActivity extends BaseActivity {
 
     /**
      * Change text view which user click on
-     *
      * @param position
      */
     public void changeTextView(int position) {
@@ -309,7 +315,9 @@ public class MainLogoutActivity extends BaseActivity {
         int rb_px = (int) curTextView.getX() + curTextView.getWidth() / 2;
         horizontalScrollView.scrollTo(rb_px - screenWidth / 2, 0);
     }
-
+    /**
+     * set the recommendMovieList from the movie list
+     */
     public void setRecommendMoviesList() {
         for (int i = 0; i < 15; i++) {
             recommendMoviesList.add(moviesList.get(i));
@@ -317,6 +325,9 @@ public class MainLogoutActivity extends BaseActivity {
         recommendBundle.putSerializable("moviesList", recommendMoviesList);
         RecommendFragment.setArguments(recommendBundle);
     }
+    /**
+     * set the different type of movies from the movie list
+     */
     public ArrayList<Movie> setMovieList(String movieType) {
         ArrayList<Movie> movieArrayList = new ArrayList<>();
         for (int i = 0; i < moviesList.size(); i++) {
@@ -330,4 +341,23 @@ public class MainLogoutActivity extends BaseActivity {
         }
         return movieArrayList;
     }
+    /**
+     * set the topRatesMovieList from the movie list
+     */
+    public void setTopRatesMovieList(){
+        Movie tempMovie;
+        for (int i =0;i<moviesList.size()-1;i++){
+            for(int j=0 ; j<moviesList.size()-1-i;j++){
+                if (moviesList.get(j).getRating_douban() <= moviesList.get(j+1).getRating_douban()){
+                    tempMovie = moviesList.get(j);
+                    moviesList.set(j,moviesList.get(j+1));
+                    moviesList.set(j+1,tempMovie);
+                }
+            }
+        }
+        for (int k= 0;k<9;k++){
+            topRatesMovieList.add(k,moviesList.get(k));
+        }
+    }
+
 }
